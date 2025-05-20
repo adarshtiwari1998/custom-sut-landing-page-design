@@ -1,1182 +1,1197 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore our range of high-quality filter sets designed for optimal performance and efficiency. Choose from multiple configurations to meet your specific application requirements.">
-  <title>Custom Filter Sets | Foxx BioProcess</title>
-  <style>
-    /* Base styles to ensure proper rendering */
-    #foxx-app *:empty {
-      display: block !important;
-    }
-
-    /* Metrics Display */
-    .sut-metrics-display {
-      margin-bottom: 50px;
-    }
-
-    .sut-metric-block {
-      background-color: #fff;
-      border-radius: 8px;
-      padding: 25px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      width: 85%;
-    }
-
-    .sut-metric-block.sut-right-aligned {
-      margin-left: auto;
-      margin-right: 0;
-    }
-
-    .sut-metric-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .sut-metric-header-row h4 {
-      margin: 0;
-      font-size: 1.3rem;
-      color: #333;
-      font-weight: 600;
-    }
-
-    .sut-metric-circles {
-      display: flex;
-      align-items: center;
-    }
-
-    .sut-circle {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      margin-left: -5px;
-      border: 2px solid white;
-    }
-
-    .sut-circle.sut-blue {
-      background-color: #4285f4;
-    }
-
-    .sut-circle.sut-green {
-      background-color: #34a853;
-    }
-
-    .sut-circle.sut-yellow {
-      background-color: #fbbc05;
-    }
-
-    .sut-plus-indicator {
-      margin-left: 8px;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    .sut-metric-value {
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: #333;
-    }
-
-    .sut-metric-progress-bar {
-      height: 10px;
-      background-color: #e0e0e0;
-      border-radius: 5px;
-      overflow: hidden;
-      margin-bottom: 10px;
-    }
-
-    .sut-progress {
-      height: 100%;
-      border-radius: 5px;
-    }
-
-    .sut-progress.sut-blue {
-      background-color: #4285f4;
-    }
-
-    .sut-progress.sut-green {
-      background-color: #34a853;
-    }
-
-    .sut-progress.sut-yellow {
-      background-color: #fbbc05;
-    }
-
-    .sut-metric-details {
-      display: flex;
-      justify-content: space-between;
-      font-size: 1rem;
-      color: #666;
-    }
-
-    .sut-metric-current, .sut-metric-target, .sut-metric-label {
-      font-weight: 500;
-    }
-
-    .foxx-cta-button {
-      display: inline-block;
-      padding: 15px 30px;
-      background-color: #0f7436;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-
-    .foxx-cta-button:hover {
-      background-color: #0a5c2a;
-      color: #e0e0e0 !important;
-      transform: translateY(-3px);
-    }
-
-    /* CTA Section */
-    #foxx-cta-section {
-      background-color: #f0f0f0;
-      padding: 80px 0;
-      text-align: center;
-    }
-
-    .foxx-cta-content h2 {
-      margin-bottom: 20px;
-    }
-
-    /* Filter Diagram Section */
-    #filter-diagram-section {
-      background-color: #f5f7fa;
-      padding: 80px 0;
-      overflow: hidden;
-    }
-
-    .filter-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .filter-diagram-content {
-      color: #333;
-      line-height: 1.6;
-    }
-
-    .filter-section-title {
-      font-size: 2.8rem;
-      margin-bottom: 30px;
-      color: #333;
-      font-weight: 700;
-      text-align: center;
-      position: relative;
-    }
-
-    .filter-section-title::after {
-      display: none;
-    }
-
-    .filter-text-center {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 30px;
-      font-size: 1.3rem;
-      color: #666;
-    }
-
-    /* Configuration Tabs */
-    .filter-config-tabs {
-      display: flex;
-      background-color: #fff;
-      border-bottom: 2px solid #eaeaea;
-      margin-bottom: 30px;
-      border-radius: 8px 8px 0 0;
-      overflow: hidden;
-    }
-
-    .filter-config-tabs > div {
-      flex: 1;
-      padding: 15px 20px;
-      text-align: center;
-      font-weight: 600;
-      font-size: 1.2rem;
-      color: #666;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .filter-config-tabs > div:hover {
-      color: #095ea7;
-      background-color: rgba(9, 94, 167, 0.05);
-    }
-
-    .filter-tab-active {
-      color: #095ea7 !important;
-      border-bottom: 3px solid #095ea7;
-      background-color: #f9fafc;
-    }
-
-    /* Diagram Container */
-    .filter-diagram-container {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      padding: 30px;
-      margin-bottom: 40px;
-    }
-
-    .filter-diagram-box {
-      position: relative;
-      margin-bottom: 30px;
-    }
-
-    .filter-diagram-box svg {
-      height: auto !important;
-      width: 100% !important;
-    }
-
-    /* Tab Content */
-    .filter-tab-content {
-      display: none;
-    }
-
-    .filter-tab-content.active {
-      display: block;
-    }
-
-    /* Point Markers */
-    .filter-point-marker {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: #095ea7;
-      border: 3px solid white;
-      transform: translate(-50%, -50%);
-      cursor: pointer;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-      z-index: 10;
-      transition: all 0.3s ease;
-    }
-
-    .filter-point-marker:hover {
-      transform: translate(-50%, -50%) scale(1.2);
-      box-shadow: 0 0 12px rgba(9, 94, 167, 0.5);
-    }
-
-    @keyframes filter-pulse {
-      0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
-      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
-    }
-
-    .filter-point-marker {
-      animation: filter-pulse 2s infinite;
-    }
-
-    /* Points Row */
-    .filter-points-row {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-      margin-bottom: 30px;
-      border-bottom: 1px solid #eaeaea;
-      padding-bottom: 20px;
-    }
-
-    .filter-point-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      flex: 1;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .filter-point-item:hover {
-      transform: translateY(-5px);
-    }
-
-    .filter-point-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: #095ea7;
-      margin-bottom: 8px;
-    }
-
-    .filter-point-item span {
-      font-weight: 600;
-      color: #095ea7;
-    }
-
-    /* Diagram Footer */
-    .filter-diagram-footer {
-      padding: 20px 0;
-      border-top: 1px solid #eaeaea;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .filter-diagram-footer h3 {
-      color: #095ea7;
-      margin: 0;
-      font-size: 1.6rem;
-    }
-
-    .filter-model-number {
-      color: #666;
-      font-weight: 500;
-      font-size: 1.2rem;
-    }
-
-    /* Specs Grid */
-    .filter-specs-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-bottom: 50px;
-    }
-
-    .filter-specs-item {
-      display: flex;
-      gap: 15px;
-      align-items: flex-start;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-    }
-
-    .filter-specs-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    }
-
-    .filter-specs-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 46px;
-      height: 46px;
-      background-color: rgba(9, 94, 167, 0.1);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .filter-specs-icon svg {
-      width: auto !important;
-      height: auto !important;
-      fill: #074a82 !important;
-      stroke: #074a82 !important;
-    }
-
-    .filter-specs-content h4 {
-      margin: 0 0 5px;
-      color: #095ea7;
-      line-height: 1.2;
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-
-    .filter-specs-content p {
-      margin: 0;
-      color: #666;
-      font-size: 1rem;
-      line-height: 1.4;
-    }
-
-    /* Features Grid */
-    .filter-features-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-
-    .filter-features-item {
-      padding: 25px;
-      background-color: #fff;
-      border-radius: 8px;
-      border: 1px solid #e5e7eb;
-      transition: all 0.3s ease;
-    }
-
-    .filter-features-item:hover {
-      transform: translateY(-5px);
-      border-color: #095ea7;
-    }
-
-    .filter-feature-icon {
-      width: 50px;
-      height: 50px;
-      background-color: rgba(9, 94, 167, 0.1);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
-
-    .filter-feature-icon svg {
-      width: auto !important;
-      height: auto !important;
-      fill: #074a82 !important;
-      stroke: #074a82 !important;
-    }
-
-    .filter-feature-content h5 {
-      margin: 0 0 8px;
-      line-height: 1.2;
-      color: #095ea7;
-      font-size: 1.4rem;
-      font-weight: 600;
-    }
-
-    .filter-feature-content p {
-      margin: 0;
-      color: #666;
-      font-size: 1.2rem;
-      line-height: 1.4;
-    }
-
-    /* CTA Container */
-    .filter-cta-container {
-      text-align: center;
-      margin-top: 40px;
-      margin-bottom: 40px;
-    }
-
-    .filter-primary-btn {
-      display: inline-block;
-      padding: 14px 30px;
-      background-color: #095ea7;
-      color: white;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: all 0.3s ease;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 12px rgba(9, 94, 167, 0.2);
-    }
-
-    .filter-primary-btn:hover {
-      background-color: #074a82;
-      color: #ffffff !important;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 15px rgba(9, 94, 167, 0.3);
-    }
-
-    /* Animation */
-    .filter-animate-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .filter-animate-on-scroll.animate-active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Responsive Styles */
-    @media (max-width: 1024px) {
-      .filter-specs-grid, 
-      .filter-features-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .filter-diagram-footer {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .filter-diagram-footer h3 {
-        margin-bottom: 5px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .filter-section-title {
-        font-size: 2.2rem;
-      }
-
-      .filter-config-tabs {
-        flex-direction: column;
-      }
-
-      .filter-specs-grid, 
-      .filter-features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .filter-point-item span {
-        font-size: 0.9rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .filter-points-row {
-        flex-wrap: wrap;
-      }
-
-      .filter-point-item {
-        flex: 0 0 50%;
-        margin-bottom: 15px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div id="foxx-app">
-    <section id="filter-diagram-section">
-      <div class="filter-container">
-        <div class="filter-diagram-content filter-animate-on-scroll">
-          <!-- Header -->
-          <div style="display: flex; align-items: center; gap: 60px; margin-bottom: 80px; background: #f8fafc; padding: 40px; border-radius: 12px;">
-            <div style="flex: 1.2;">
-              <h2 style="text-align: left; font-size: 2.5rem; margin-bottom: 20px; color: #333; font-weight: 700; position: relative;">Filter Sets</h2>
-              <p style="font-size: 1.1rem; line-height: 1.7; color: #4a5568; margin-top: 20px; margin-bottom: 30px;">
-                Designed to remove particulates, bacteria, and other contaminants, safeguarding product integrity during bioprocessing, integrated into custom assemblies, these filter sets enhance process reliability and reduce cross-contamination risk.
-              </p>
-              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" 
-                 class="filter-primary-btn" 
-                 style="font-size: 1.1rem; padding: 16px 32px; display: inline-block;">
-                Explore Filter Sets
-              </a>
-            </div>
-            <div style="flex: 1;">
-              <img src="https://foxxbioprocess.com/cdn/shop/files/bioprocess-web-custom-sut-area-cfd-diagrams-filter-sets_free_size_k8yclu.png?v=1728504642&width=1920"
-                   alt="Bioprocess Filter Sets"
-                   style="width: 90%; height: auto; border-radius: 12px; display: block; margin: 0 auto;">
-            </div>
-          </div>
-
-          <!-- Configuration Tabs -->
-          <div class="filter-config-tabs">
-            <div data-tab="standard" class="filter-tab-active">CFD 1</div>
-            <div data-tab="high-capacity">CFD 2</div>
-            <div data-tab="specialized">CFD 3</div>
-            <div style="display: flex; align-items: center; gap: 10px; padding: 15px 20px; color: #095ea7;">
-              <span style="background: #e3f2fd; color: #095ea7; padding: 4px 8px; border-radius: 12px; font-size: 0.9rem; font-weight: 600;">100+ Drawings</span>
-              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" 
-                 style="text-decoration: none; color: #095ea7; font-weight: 600; font-size: 0.9rem;">
-                View All →
-              </a>
-            </div>
-          </div>
-
-          <!-- Standard Filter Set Tab Content -->
-          <div class="filter-tab-content active" id="standard-tab">
-            <div class="filter-diagram-container">
-              <div class="filter-diagram-box">
-                <!-- SVG Diagram -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100" width="100%" height="auto">
-                  <g transform="translate(100,20)">
-                    <!-- Inlet Chamber (Dark Gray) -->
-                    <rect x="0" y="20" width="100" height="40" fill="#2d3748" rx="5"/>
-                    <circle cx="20" cy="40" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
-
-                    <!-- Connection Tube with Green Indicator -->
-                    <rect x="100" y="35" width="150" height="10" fill="#a0aec0"/>
-                    <rect x="130" y="32" width="20" height="16" fill="#48bb78"/>
-
-                    <!-- Filter Medium (Gray) -->
-                    <rect x="250" y="10" width="160" height="60" fill="#4a5568" rx="10"/>
-                    <line x1="250" y1="40" x2="410" y2="40" stroke="#718096" stroke-width="2"/>
-
-                    <!-- Connection Tube with Red Indicator -->
-                    <rect x="410" y="35" width="150" height="10" fill="#a0aec0"/>
-                    <rect x="440" y="32" width="20" height="16" fill="#f56565"/>
-
-                    <!-- Outlet Port (Blue) -->
-                    <rect x="560" y="20" width="100" height="40" fill="#3f51b5" rx="5"/>
-                    <circle cx="640" cy="40" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
-                  </g>
-                </svg>
-
-                <!-- Point markers positioned over diagram -->
-                <div class="filter-point-marker" data-point="inlet" style="top: 50%; left: 15%;"></div>
-                <div class="filter-point-marker" data-point="filter" style="top: 50%; left: 40%;"></div>
-                <div class="filter-point-marker" data-point="connector" style="top: 50%; left: 65%;"></div>
-                <div class="filter-point-marker" data-point="outlet" style="top: 50%; left: 85%;"></div>
+            <html lang="en">
+            <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta name="description" content="Explore our range of high-quality filter sets designed for optimal performance and efficiency. Choose from multiple configurations to meet your specific application requirements.">
+              <title>Custom Filter Sets | Foxx BioProcess</title>
+              <style>
+                /* Base styles to ensure proper rendering */
+                #foxx-app *:empty {
+                  display: block !important;
+                }
+
+                /* Metrics Display */
+                .sut-metrics-display {
+                  margin-bottom: 50px;
+                }
+
+                .sut-metric-block {
+                  background-color: #fff;
+                  border-radius: 8px;
+                  padding: 25px;
+                  margin-bottom: 20px;
+                  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                  width: 85%;
+                }
+
+                .sut-metric-block.sut-right-aligned {
+                  margin-left: auto;
+                  margin-right: 0;
+                }
+
+                .sut-metric-header-row {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 15px;
+                }
+
+                .sut-metric-header-row h4 {
+                  margin: 0;
+                  font-size: 1.3rem;
+                  color: #333;
+                  font-weight: 600;
+                }
+
+                .sut-metric-circles {
+                  display: flex;
+                  align-items: center;
+                }
+
+                .sut-circle {
+                  width: 24px;
+                  height: 24px;
+                  border-radius: 50%;
+                  margin-left: -5px;
+                  border: 2px solid white;
+                }
+
+                .sut-circle.sut-blue {
+                  background-color: #4285f4;
+                }
+
+                .sut-circle.sut-green {
+                  background-color: #34a853;
+                }
+
+                .sut-circle.sut-yellow {
+                  background-color: #fbbc05;
+                }
+
+                .sut-plus-indicator {
+                  margin-left: 8px;
+                  font-weight: 600;
+                  font-size: 1rem;
+                }
+
+                .sut-metric-value {
+                  font-weight: 700;
+                  font-size: 1.4rem;
+                  color: #333;
+                }
+
+                .sut-metric-progress-bar {
+                  height: 10px;
+                  background-color: #e0e0e0;
+                  border-radius: 5px;
+                  overflow: hidden;
+                  margin-bottom: 10px;
+                }
+
+                .sut-progress {
+                  height: 100%;
+                  border-radius: 5px;
+                }
+
+                .sut-progress.sut-blue {
+                  background-color: #4285f4;
+                }
+
+                .sut-progress.sut-green {
+                  background-color: #34a853;
+                }
+
+                .sut-progress.sut-yellow {
+                  background-color: #fbbc05;
+                }
+
+                .sut-metric-details {
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 1rem;
+                  color: #666;
+                }
+
+                .sut-metric-current, .sut-metric-target, .sut-metric-label {
+                  font-weight: 500;
+                }
+
+                .foxx-cta-button {
+                  display: inline-block;
+                  padding: 15px 30px;
+                  background-color: #0f7436;
+                  color: white;
+                  text-decoration: none;
+                  border-radius: 5px;
+                  font-weight: bold;
+                  transition: all 0.3s ease;
+                }
+
+                .foxx-cta-button:hover {
+                  background-color: #0a5c2a;
+                  color: #e0e0e0 !important;
+                  transform: translateY(-3px);
+                }
+
+                /* CTA Section */
+                #foxx-cta-section {
+                  background-color: #f0f0f0;
+                  padding: 80px 0;
+                  text-align: center;
+                }
+
+                .foxx-cta-content h2 {
+                  margin-bottom: 20px;
+                }
+
+                /* Filter Diagram Section */
+                #filter-diagram-section {
+                  background-color: #f5f7fa;
+                  padding: 80px 0;
+                  overflow: hidden;
+                }
+
+                .filter-container {
+                  max-width: 1200px;
+                  margin: 0 auto;
+                  padding: 0 20px;
+                }
+
+                .filter-diagram-content {
+                  color: #333;
+                  line-height: 1.6;
+                }
+
+                .filter-section-title {
+                  font-size: 2.8rem;
+                  margin-bottom: 30px;
+                  color: #333;
+                  font-weight: 700;
+                  text-align: center;
+                  position: relative;
+                }
+
+                .filter-section-title::after {
+                  display: none;
+                }
+
+                .filter-text-center {
+                  text-align: center;
+                  max-width: 800px;
+                  margin: 0 auto 30px;
+                  font-size: 1.3rem;
+                  color: #666;
+                }
+
+                /* Configuration Tabs */
+                .filter-config-tabs {
+                  display: flex;
+                  background-color: #fff;
+                  border-bottom: 2px solid #eaeaea;
+                  margin-bottom: 30px;
+                  border-radius: 8px 8px 0 0;
+                  overflow: hidden;
+                }
+
+                .filter-config-tabs > div {
+                  flex: 1;
+                  padding: 15px 20px;
+                  text-align: center;
+                  font-weight: 600;
+                  font-size: 1.2rem;
+                  color: #666;
+                  cursor: pointer;
+                  transition: all 0.3s ease;
+                }
+
+                .filter-config-tabs > div:hover {
+                  color: #095ea7;
+                  background-color: rgba(9, 94, 167, 0.05);
+                }
+
+                .filter-tab-active {
+                  color: #095ea7 !important;
+                  border-bottom: 3px solid #095ea7;
+                  background-color: #f9fafc;
+                }
+
+                /* Diagram Container */
+                .filter-diagram-container {
+                  background: #fff;
+                  border-radius: 8px;
+                  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                  padding: 30px;
+                  margin-bottom: 40px;
+                }
+
+                .filter-diagram-box {
+                  position: relative;
+                  margin-bottom: 30px;
+                }
+
+                .filter-diagram-box svg {
+                  height: auto !important;
+                  width: 100% !important;
+                }
+
+                /* Tab Content */
+                .filter-tab-content {
+                  display: none;
+                }
+
+                .filter-tab-content.active {
+                  display: block;
+                }
+
+                /* Point Markers */
+                .filter-point-marker {
+                  position: absolute;
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 50%;
+                  background-color: #095ea7;
+                  border: 3px solid white;
+                  transform: translate(-50%, -50%);
+                  cursor: pointer;
+                  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+                  z-index: 10;
+                  transition: all 0.3s ease;
+                }
+
+                .filter-point-marker:hover {
+                  transform: translate(-50%, -50%) scale(1.2);
+                  box-shadow: 0 0 12px rgba(9, 94, 167, 0.5);
+                }
+
+                @keyframes filter-pulse {
+                  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+                  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+                  100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+                }
+
+                .filter-point-marker {
+                  animation: filter-pulse 2s infinite;
+                }
+
+                /* Points Row */
+                .filter-points-row {
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: 20px;
+                  margin-bottom: 30px;
+                  border-bottom: 1px solid #eaeaea;
+                  padding-bottom: 20px;
+                }
+
+                .filter-point-item {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  text-align: center;
+                  flex: 1;
+                  cursor: pointer;
+                  transition: all 0.3s ease;
+                }
+
+                .filter-point-item:hover {
+                  transform: translateY(-5px);
+                }
+
+                .filter-point-dot {
+                  width: 10px;
+                  height: 10px;
+                  border-radius: 50%;
+                  background-color: #095ea7;
+                  margin-bottom: 8px;
+                }
+
+                .filter-point-item span {
+                  font-weight: 600;
+                  color: #095ea7;
+                }
+
+                /* Diagram Footer */
+                .filter-diagram-footer {
+                  padding: 20px 0;
+                  border-top: 1px solid #eaeaea;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                }
+
+                .filter-diagram-footer h3 {
+                  color: #095ea7;
+                  margin: 0;
+                  font-size: 1.6rem;
+                }
+
+                .filter-model-number {
+                  color: #666;
+                  font-weight: 500;
+                  font-size: 1.2rem;
+                }
+
+                /* Specs Grid */
+                .filter-specs-grid {
+                  display: grid;
+                  grid-template-columns: repeat(4, 1fr);
+                  gap: 20px;
+                  margin-bottom: 50px;
+                }
+
+                .filter-specs-item {
+                  display: flex;
+                  gap: 15px;
+                  align-items: flex-start;
+                  padding: 20px;
+                  background-color: #fff;
+                  border-radius: 8px;
+                  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                  transition: all 0.3s ease;
+                }
+
+                .filter-specs-item:hover {
+                  transform: translateY(-5px);
+                  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+                }
+
+                .filter-specs-icon {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 46px;
+                  height: 46px;
+                  background-color: rgba(9, 94, 167, 0.1);
+                  border-radius: 50%;
+                  flex-shrink: 0;
+                }
+
+                .filter-specs-icon svg {
+                  width: auto !important;
+                  height: auto !important;
+                  fill: #074a82 !important;
+                  stroke: #074a82 !important;
+                }
+
+                .filter-specs-content h4 {
+                  margin: 0 0 5px;
+                  color: #095ea7;
+                  line-height: 1.2;
+                  font-size: 1.2rem;
+                  font-weight: 600;
+                }
+
+                .filter-specs-content p {
+                  margin: 0;
+                  color: #666;
+                  font-size: 1rem;
+                  line-height: 1.4;
+                }
+
+                /* Features Grid */
+                .filter-features-grid {
+                  display: grid;
+                  grid-template-columns: repeat(4, 1fr);
+                  gap: 20px;
+                  margin-bottom: 40px;
+                }
+
+                .filter-features-item {
+                  padding: 25px;
+                  background-color: #fff;
+                  border-radius: 8px;
+                  border: 1px solid #e5e7eb;
+                  transition: all 0.3s ease;
+                }
+
+                .filter-features-item:hover {
+                  transform: translateY(-5px);
+                  border-color: #095ea7;
+                }
+
+                .filter-feature-icon {
+                  width: 50px;
+                  height: 50px;
+                  background-color: rgba(9, 94, 167, 0.1);
+                  border-radius: 8px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin-bottom: 15px;
+                }
+
+                .filter-feature-icon svg {
+                  width: auto !important;
+                  height: auto !important;
+                  fill: #074a82 !important;
+                  stroke: #074a82 !important;
+                }
+
+                .filter-feature-content h5 {
+                  margin: 0 0 8px;
+                  line-height: 1.2;
+                  color: #095ea7;
+                  font-size: 1.4rem;
+                  font-weight: 600;
+                }
+
+                .filter-feature-content p {
+                  margin: 0;
+                  color: #666;
+                  font-size: 1.2rem;
+                  line-height: 1.4;
+                }
+
+                /* CTA Container */
+                .filter-cta-container {
+                  text-align: center;
+                  margin-top: 40px;
+                  margin-bottom: 40px;
+                }
+
+                .filter-primary-btn {
+                  display: inline-block;
+                  padding: 14px 30px;
+                  background-color: #095ea7;
+                  color: white;
+                  font-weight: 600;
+                  text-decoration: none;
+                  border-radius: 6px;
+                  transition: all 0.3s ease;
+                  font-size: 1.2rem;
+                  box-shadow: 0 4px 12px rgba(9, 94, 167, 0.2);
+                }
+
+                .filter-primary-btn:hover {
+                  background-color: #074a82;
+                  color: #ffffff !important;
+                  transform: translateY(-2px);
+                  box-shadow: 0 8px 15px rgba(9, 94, 167, 0.3);
+                }
+
+                /* Animation */
+                .filter-animate-on-scroll {
+                  opacity: 0;
+                  transform: translateY(30px);
+                  transition: opacity 1s ease, transform 1s ease;
+                }
+
+                .filter-animate-on-scroll.animate-active {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+
+                /* Responsive Styles */
+                @media (max-width: 1024px) {
+                  .filter-specs-grid, 
+                  .filter-features-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                  }
+
+                  .filter-diagram-footer {
+                    flex-direction: column;
+                    text-align: center;
+                  }
+
+                  .filter-diagram-footer h3 {
+                    margin-bottom: 5px;
+                  }
+                }
+
+                @media (max-width: 768px) {
+                  .filter-section-title {
+                    font-size: 2.2rem;
+                  }
+
+                  .filter-config-tabs {
+                    flex-direction: column;
+                  }
+
+                  .filter-specs-grid, 
+                  .filter-features-grid {
+                    grid-template-columns: 1fr;
+                  }
+
+                  .filter-point-item span {
+                    font-size: 0.9rem;
+                  }
+                }
+
+                @media (max-width: 576px) {
+                  .filter-points-row {
+                    flex-wrap: wrap;
+                  }
+
+                  .filter-point-item {
+                    flex: 0 0 50%;
+                    margin-bottom: 15px;
+                  }
+                }
+              </style>
+            </head>
+            <body>
+              <div id="foxx-app">
+                <section id="filter-diagram-section">
+                  <div class="filter-container">
+                    <div class="filter-diagram-content filter-animate-on-scroll">
+                      <!-- Header -->
+                      <div style="display: flex; align-items: center; gap: 60px; margin-bottom: 80px; background: #f8fafc; padding: 40px; border-radius: 12px;">
+                        <div style="flex: 1.2;">
+                          <h2 style="text-align: left; font-size: 2.5rem; margin-bottom: 20px; color: #333; font-weight: 700; position: relative;">Filter Sets</h2>
+                          <p style="font-size: 1.1rem; line-height: 1.7; color: #4a5568; margin-top: 20px; margin-bottom: 30px;">
+                            Designed to remove particulates, bacteria, and other contaminants, safeguarding product integrity during bioprocessing, integrated into custom assemblies, these filter sets enhance process reliability and reduce cross-contamination risk.
+                          </p>
+                          <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" 
+                             class="filter-primary-btn" 
+                             style="font-size: 1.1rem; padding: 16px 32px; display: inline-block;">
+                            Explore Filter Sets
+                          </a>
+                        </div>
+                        <div style="flex: 1;">
+                          <img src="https://foxxbioprocess.com/cdn/shop/files/bioprocess-web-custom-sut-area-cfd-diagrams-filter-sets_free_size_k8yclu.png?v=1728504642&width=1920"
+                               alt="Bioprocess Filter Sets"
+                               style="width: 90%; height: auto; border-radius: 12px; display: block; margin: 0 auto;">
+                        </div>
+                      </div>
+
+                      <!-- Configuration Tabs -->
+                      <div class="filter-config-tabs">
+                        <div data-tab="standard" class="filter-tab-active">CFD 1</div>
+                        <div data-tab="high-capacity">CFD 2</div>
+                        <div data-tab="specialized">CFD 3</div>
+                        <div style="display: flex; align-items: center; gap: 10px; padding: 15px 20px; color: #095ea7;">
+                          <span style="background: #e3f2fd; color: #095ea7; padding: 4px 8px; border-radius: 12px; font-size: 0.9rem; font-weight: 600;">100+ Drawings</span>
+                          <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" 
+                             style="text-decoration: none; color: #095ea7; font-weight: 600; font-size: 0.9rem;">
+                            View All →
+                          </a>
+                        </div>
+                      </div>
+
+                      <!-- Standard Filter Set Tab Content -->
+                      <div class="filter-tab-content active" id="standard-tab">
+                        <div class="filter-diagram-container">
+                          <div class="filter-diagram-box">
+                            <!-- SVG Diagram -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100" width="100%" height="auto">
+                              <g transform="translate(100,20)">
+                                <!-- Inlet Chamber -->
+                                <rect x="0" y="20" width="100" height="40" fill="#b5cfdb" rx="5"/>
+                                <circle cx="20" cy="40" r="8" fill="#9dc7ae" stroke="#fff" stroke-width="2"/>
+
+                                <!-- Connection Tube with Indicator -->
+                                <rect x="100" y="35" width="150" height="10" fill="#9dc7ae"/>
+                                <rect x="130" y="32" width="20" height="16" fill="#9dc7ae"/>
+
+                                <!-- Filter Medium -->
+                                <rect x="250" y="10" width="160" height="60" fill="#b5cfdb" rx="10"/>
+                                <line x1="250" y1="40" x2="410" y2="40" stroke="#9dc7ae" stroke-width="2"/>
+
+                                <!-- Connection Tube with Indicator -->
+                                <rect x="410" y="35" width="150" height="10" fill="#9dc7ae"/>
+                                <rect x="440" y="32" width="20" height="16" fill="#9dc7ae"/>
+
+                                <!-- Outlet Port -->
+                                <rect x="560" y="20" width="100" height="40" fill="#b5cfdb" rx="5"/>
+                                <circle cx="640" cy="40" r="8" fill="#9dc7ae" stroke="#fff" stroke-width="2"/>
+                              </g>
+                            </svg>
+
+                            <div style="text-align: center; margin-top: 10px; font-style: italic; color: #666;">
+                              Note: This diagram is for illustration purposes. Access actual technical diagrams through the Custom SUT Catalog dashboard.
+                            </div>
+
+                            <!-- Point markers positioned over diagram -->
+                            <div class="filter-point-marker" data-point="inlet" style="top: 50%; left: 15%;"></div>
+                            <div class="filter-point-marker" data-point="filter" style="top: 50%; left: 40%;"></div>
+                            <div class="filter-point-marker" data-point="connector" style="top: 50%; left: 65%;"></div>
+                            <div class="filter-point-marker" data-point="outlet" style="top: 50%; left: 85%;"></div>
+                          </div>
+
+                          <div class="filter-points-row">
+                            <div class="filter-point-item" data-id="inlet">
+                              <div class="filter-point-dot"></div>
+                              <span>Inlet Chamber</span>
+                            </div>
+                            <div class="filter-point-item" data-id="filter">
+                              <div class="filter-point-dot"></div>
+                              <span>Filter Medium</span>
+                            </div>
+                            <div class="filter-point-item" data-id="connector">
+                              <div class="filter-point-dot"></div>
+                              <span>Connection Seal</span>
+                            </div>
+                            <div class="filter-point-item" data-id="outlet">
+                              <div class="filter-point-dot"></div>
+                              <span>Outlet Port</span>
+                            </div>
+                          </div>
+
+                          <div class="filter-diagram-footer">
+                            <h3>CFD 1 Configuration</h3>
+                            <div class="filter-model-number">Model: F-1000</div>
+                          </div>
+                        </div>
+
+                        <div class="filter-cta-container">
+                          <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="filter-primary-btn">Request CFD 1 Quote</a>
+                        </div>
+
+                        <!-- Specs Grid for Standard Filter -->
+                        <div class="filter-specs-grid">
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm3.707-9.293l-4-4a1 1 0 00-1.414 0l-4 4a1 1 0 001.414 1.414L11 8.414V14a1 1 0 002 0V8.414l3.293 3.293a1 1 0 001.414-1.414z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Flow Rate</h4>
+                              <p>10-25 L/min standard operating flow</p>
+                            </div>
+                          </div>
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M3 4.25A.75.75 0 013.75 3.5h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 4.25zM6 10.25a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H6.75a.75.75 0 01-.75-.75zM9 16.25a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 o 01-.75-.75z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Filter Grade</h4>
+                              <p>0.2-5 micron filtration capacity</p>
+                            </div>
+                          </div>
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M10 2a2 2 0 00-2 2v10.101C7.081 14.427 6.5 15.631 6.5 17c0 2.486 1.989 4.5 4.5 4.5s4.5-2.014 4.5-4.5c0-1.369-.581-2.573-1.5-3.899V4a2 2 0 00-2-2h-2zm2 2v10.764c.739.57 1.5 1.442 1.5 2.736 0 1.38-1.12 2.5-2.5 2.5S8.5 18.88 8.5 17.5c0-1.294.761-2.166 1.5-2.736V4h2z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Temperature</h4>
+                              <p>Operating range: 5-80°C</p>
+                            </div>
+                          </div>
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M10.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM10.5 6c1.574 1.574 3.906 1.574 5.48 0a4.5 4.5 0 10-5.48 0zm9.344 5.344l-3.5 3.5a2 2 0 01-2.828 0l-1.672-1.672a2 2 0 010-2.828l3.5-3.5a3 3 0 00-2.011 5.172l-5.207 5.207a3 3 0 104.243 4.243L18.5 13.258a3 3 0 001.344-5.914z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Material</h4>
+                              <p>Medical-grade polypropylene</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="filter-cta-container">
+                          <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="filter-primary-btn">Request Filter Set Quote</a>
+                        </div>
+                      </div>
+
+                      <!-- High-Capacity Filter Set Tab Content -->
+                      <div class="filter-tab-content" id="high-capacity-tab">
+                        <div class="filter-diagram-container">
+                          <div class="filter-diagram-box">
+                            <!-- SVG Diagram for High Capacity Filter -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="100%" height="auto">
+                              <g transform="translate(50,20)">
+                                <!-- Main Horizontal Line -->
+                                <line x1="0" y1="50" x2="300" y2="50" stroke="#b5cfdb" stroke-width="15"/>
+
+                                <!-- Center Connection Point -->
+                                <circle cx="300" cy="50" r="20" fill="#b5cfdb"/>
+
+                                <!-- Y-Branch Lines -->
+                                <line x1="300" y1="50" x2="500" y2="20" stroke="#b5cfdb" stroke-width="15"/>
+                                <line x1="300" y1="50" x2="500" y2="80" stroke="#b5cfdb" stroke-width="15"/>
+
+                                <!-- Connection Points -->
+                                <circle cx="150" cy="50" r="15" fill="#9dc7ae"/>
+                                <circle cx="500" cy="20" r="25" fill="#b5cfdb"/>
+                                <circle cx="500" cy="80" r="25" fill="#b5cfdb"/>
+
+                                <!-- Enhanced Outlet -->
+                                <rect x="470" y="15" width="80" height="50" fill="#b5cfdb" rx="5"/>
+                                <line x1="420" y1="40" x2="470" y2="40" stroke="#9dc7ae" stroke-width="10"/>
+                                <circle cx="510" cy="40" r="8" fill="#9dc7ae" stroke"#fff" stroke-width="2"/>
+                              </g>
+                            </svg>
+
+                            <div style="text-align: center; margin-top: 10px; font-style: italic; color: #666;">
+                              Note: This diagram is for illustration purposes. Access actual technical diagrams through the Custom SUT Catalog dashboard.
+                            </div>
+
+                            <!-- Point markers positioned over diagram -->
+                            <div class="filter-point-marker" data-point="inlet" style="top: 40%; left: 18%;"></div>
+                <div class="filter-point-marker" data-point="pre-filter" style="top: 40%; left: 35%;"></div>
+                <div class="filter-point-marker" data-point="main-filter" style="top: 40%; left: 55%;"></div>
+                <div class="filter-point-marker" data-point="outlet" style="top: 40%; left: 75%;"></div>
+                          </div>
+
+                          <div class="filter-points-row">
+                            <div class="filter-point-item" data-id="inlet">
+                              <div class="filter-point-dot"></div>
+                              <span>High-Flow Inlet</span>
+                            </div>
+                            <div class="filter-point-item" data-id="pre-filter">
+                              <div class="filter-point-dot"></div>
+                              <span>Pre-Filter Stage</span>
+                            </div>
+                            <div class="filter-point-item" data-id="main-filter">
+                              <div class="filter-point-dot"></div>
+                              <span>Main Filtration</span>
+                            </div>
+                            <div class="filter-point-item" data-id="outlet">
+                              <div class="filter-point-dot"></div>
+                              <span>Enhanced Outlet</span>
+                            </div>
+                          </div>
+
+                          <div class="filter-diagram-footer">
+                            <h3>CFD 2 Configuration</h3>
+                            <div class="filter-model-number">Model: F-2000</div>
+                          </div>
+                        </div>
+
+                        <div class="filter-cta-container">
+                          <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="filter-primary-btn">Request CFD 2 Quote</a>
+                        </div>
+
+                        <!-- Specs Grid for High-Capacity Filter -->
+                        <div class="filter-specs-grid">
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.5142 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm3.707-9.293l-4-4a1 1 0 00-1.414 0l-4 4a1 1 0 001.414 1.414L11 8.414V14a1 1 0 002 0V8.414l3.293 3.293a1 1 0 001.414-1.414z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Flow Rate</h4>
+                              <p>30-50 L/min high-volume flow</p>
+                            </div>
+                          </div>
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M3 4.25A.75.75 0 013.75 3.5h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 4.25zM6 10.25a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H6.75a.75.75 o 01-.75-.75zM9 16.25a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Dual Filtration</h4>
+                              <p>Pre-filter + 0.1 micron main filter</p>
+                            </div>
+                          </div>
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M10 2a2 2 0 00-2 2v10.101C7.081 14.427 6.5 15.631 6.5 17c0 2.486 1.989 4.5 4.5 4.5s4.5-2.014 4.5-4.5c0-1.369-.581-2.573-1.5-3.899V4a2 2 0 00-2-2h-2zm2 2v10.764c.739.57 1.5 1.442 1.5 2.736 0 1.38-1.12 2.5-2.5 2.5S8.5 18.88 8.5 17.5c0-1.294.761-2.166 1.5-2.736V4h2z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Temperature</h4>
+                              <p>Operating range: 5-95°C</p>
+                            </div>
+                          </div>
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M10.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM10.5 6c1.574 1.574 3.906 1.574 5.48 0a4.5 4.5 0 10-5.48 0zm9.344 5.344l-3.5 3.5a2 2 0 01-2.828 0l-1.672-1.672a2 2 0 010-2.828l3.5-3.5a3 3 0 00-2.011 5.172l-5.207 5.207a3 3 0 104.243 4.243L18.5 13.258a3 3 0 001.344-5.914z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Material</h4>
+                              <p>Enhanced PTFE with reinforcement</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="filter-cta-container">
+                          <a href="#" class="filter-primary-btn">Learn More About CFD 2</a>
+                        </div>
+                      </div>
+
+                      <!-- Specialized Filter Set Tab Content -->
+                      <div class="filter-tab-content" id="specialized-tab">
+                        <div class="filter-diagram-container">
+                          <div class="filter-diagram-box">
+                            <!-- SVG Diagram for Specialized Filter -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120" width="100%" height="auto">
+                              <g transform="translate(100,20)">
+                                <!-- Precision Inlet -->
+                                <rect x="0" y="20" width="100" height="60" fill="#b5cfdb" rx="8"/>
+                                <rect x="20" y="10" width="30" height="20" fill="#4a5568"/>
+                                <circle cx="20" cy="50" r="8" fill="#9dc7ae" stroke="#fff" stroke-width="2"/>
+
+                                <!-- Custom Membrane Section -->
+                                <path d="M100,50 Q 200,20 300,50 Q 400,80 500,50" 
+                                      fill="none" stroke="#9dc7ae" stroke-width="15"/>
+
+                                <!-- Monitoring Sensor -->
+                                <rect x="300" y="10" width="140" height="80" fill="#b5cfdb" rx="10"/>
+                                <circle cx="370" cy="50" r="15" fill="#9dc7ae" stroke="#fff" stroke-width="2"/>
+
+                                <!-- Controlled Outlet -->
+                                <rect x="500" y="20" width="100" height="60" fill="#b5cfdb" rx="8"/>
+                                <rect x="550" y="10" width="30" height="20" fill="#283593"/>
+                                <circle cx="580" cy="50" r="8" fill="#9dc7ae" stroke="#fff" stroke-width="2"/>
+                              </g>
+                            </svg>
+
+                              <!-- Section labels hidden in SVG, controlled by HTML -->
+                            </svg>
+
+                            <div style="text-align: center; margin-top: 10px; font-style: italic; color: #666;">
+                              Note: This diagram is for illustration purposes. Access actual technical diagrams through the Custom SUT Catalog dashboard.
+                            </div>
+
+                            <!-- Point markers positioned over diagram -->
+                            <div class="filter-point-marker" data-point="inlet" style="top: 50%; left: 10%;"></div>
+                            <div class="filter-point-marker" data-point="membrane" style="top: 50%; left: 35%;"></div>
+                            <div class="filter-point-marker" data-point="sensor" style="top: 50%; left: 60%;"></div>
+                            <div class="filter-point-marker" data-point="outlet" style="top: 50%; left: 85%;"></div>
+                          </div>
+
+                          <div class="filter-points-row">
+                            <div class="filter-point-item" data-id="inlet">
+                              <div class="filter-point-dot"></div>
+                              <span>Precision Inlet</span>
+                            </div>
+                            <div class="filter-point-item" data-id="membrane">
+                              <div class="filter-point-dot"></div>
+                              <span>Custom Membrane</span>
+                            </div>
+                            <div class="filter-point-item" data-id="sensor">
+                              <div class="filter-point-dot"></div>
+                              <span>Monitoring Sensor</span>
+                            </div>
+                            <div class="filter-point-item" data-id="outlet">
+                              <div class="filter-point-dot"></div>
+                              <span>Controlled Outlet</span>
+                            </div>
+                          </div>
+
+                          <div class="filter-diagram-footer">
+                            <h3>CFD 3 Configuration</h3>
+                            <div class="filter-model-number">Model: F-3000</div>
+                          </div>
+                        </div>
+
+                        <div class="filter-cta-container">
+                          <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="filter-primary-btn">Request CFD 3 Quote</a>
+                        </div>
+
+                        <!-- Specs Grid for Specialized Filter -->
+                        <div class="filter-specs-grid">
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm3.707-9.293l-4-4a1 1 0 00-1.414 0l-4 4a1 1 0 001.414 1.414L11 8.414V14a1 1 0 002 0V8.414l3.293 3.293a1 1 0 001.414-1.414z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Precision Flow</h4>
+                              <p>5-40 L/min with digital control</p>
+                            </div>
+                          </div>
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M3 4.25A.75.75 0 013.75 3.5h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 4.25zM6 10.25a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H6.75a.75.75 o 01-.75-.75zM9 16.25a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Advanced Filtration</h4>
+                              <p>Custom filtration down to 0.05 microns</p>
+                            </div>
+                          </div>
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M10 2a2 2 0 00-2 2v10.101C7.081 14.427 6.5 15.631 6.5 17c0 2.486 1.989 4.5 4.5 4.5s4.5-2.014 4.5-4.5c0-1.369-.581-2.573-1.5-3.899V4a2 2 0 00-2-2h-2zm2 2v10.764c.739.57 1.5 1.442 1.5 2.736 0 1.38-1.12 2.5-2.5 2.5S8.5 18.88 8.5 17.5c0-1.294.761-2.166 1.5-2.736V4h2z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Temperature Control</h4>
+                              <p>Integrated temperature monitoring</p>
+                            </div>
+                          </div>
+                          <div class="filter-specs-item">
+                            <div class="filter-specs-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M10.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM10.5 6c1.574 1.574 3.906 1.574 5.48 0a4.5 4.5 0 10-5.48 0zm9.344 5.344l-3.5 3.5a2 2 0 01-2.828 0l-1.672-1.672a2 2 0 010-2.828l3.5-3.5a3 3 0 00-2.011 5.172l-5.207 5.207a3 3 0 104.243 4.243L18.5 13.258a3 3 0 001.344-5.914z" />
+                              </svg>
+                            </div>
+                            <div class="filter-specs-content">
+                              <h4>Material Options</h4>
+                              <p>Custom materials for specific applications</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="filter-cta-container">
+                          <a href="#" class="filter-primary-btn">Learn More About CFD 3</a>
+                        </div>
+                      </div>
+
+                      <!-- Features Section -->
+                      <h3 class="filter-section-title" style="font-size: 2rem; margin-top: 50px;">Key Features</h3>
+
+                      <div class="filter-features-grid">
+                        <div class="filter-features-item">
+                          <div class="filter-feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                              <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM11 7h2v8h-2V7zm0 10h2v2h-2v-2z"/>
+                            </svg>
+                          </div>
+                          <div class="filter-feature-content">
+                            <h5>Diagram Library</h5>
+                            <p>Access all tubing set diagrams and configurations</p>
+                          </div>
+                        </div>
+
+                        <div class="filter-features-item">
+                          <div class="filter-feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
+                            </svg>
+                          </div>
+                          <div class="filter-feature-content">
+                            <h5>Technical Documentation</h5>
+                            <p>Complete specifications and material compatibility</p>
+                          </div>
+                        </div>
+
+                        <div class="filter-features-item">
+                          <div class="filter-feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"/>
+                            </svg>
+                          </div>
+                          <div class="filter-feature-content">
+                            <h5>Inquiry Support</h5>
+                            <p>Direct technical assistance for your specific needs</p>
+                          </div>
+                        </div>
+
+                        <div class="filter-features-item">
+                          <div class="filter-feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                            </svg>
+                          </div>
+                          <div class="filter-feature-content">
+                            <h5>Bulk Inquiry Support</h5>
+                            <p>Large-scale project assistance and customization</p>
+                          </div>
+                        </div>
+                        <div class="filter-features-item">
+                          <div class="filter-feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                              <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm4.293-11.707L11 13.586l-2.293-2.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414z" />
+                            </svg>
+                          </div>
+                          <div class="filter-feature-content">
+                            <h5>Superior Filtration</h5>
+                            <p>Advanced media technology removes contaminants with exceptional efficiency</p>
+                          </div>
+                        </div>
+                        <div class="filter-features-item">
+                          <div class="filter-feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                              <path d="M12 2C9.243 2 7 4.243 7 7v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7c0-2.757-2.243-5-5-5zm0 2c1.654 0 3 1.346 3 3v3H9V7c0-1.654 1.346-3 3-3zm-6 8h12v8H6v-8z" />
+                            </svg>
+                          </div>
+                          <div class="filter-feature-content">
+                            <h5>Secure Connections</h5>
+                            <p>Leak-proof connections with proprietary sealing technology</p>
+                          </div>
+                        </div>
+                        <div class="filter-features-item">
+                          <div class="filter-feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                              <path d="M21 14.5v-2.25a1.5 1.5 0 00-1.5-1.5h-1.5v-3h1.5A1.5 1.5 0 0021 6.25V4a2 2 0 00-2-2H5a2 2 0 00-2 2v2.25a1.5 1.5 0 001.5 1.5H6v3H4.5A1.5 1.5 0 003 12.25v2.25a2 2 0 002 2h1.5v3H5A1.5 1.5 0 003 21.75V24h18v-2.25a1.5 1.5 0 00-1.5-1.5h-1.5v-3H19a2 2 0 002-2z" />
+                            </svg>
+                          </div>
+                          <div class="filter-feature-content">
+                            <h5>Custom Integration</h5>
+                            <p>Tailored solutions for seamless integration with existing systems</p>
+                          </div>
+                        </div>
+                        <div class="filter-features-item">
+                          <div class="filter-feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                              <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-3.293-6.707l1.586 1.586a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414L10 13.586l-.879-.879a1 1 0 10-1.414 1.414l1 1z" />
+                            </svg>
+                          </div>
+                          <div class="filter-feature-content">
+                            <h5>Certified Quality</h5>
+                            <p>Manufactured and tested to meet strict industry standards</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Metrics Display Section -->
+                      <div class="sut-metrics-display">
+                        <h3 class="filter-section-title" style="font-size: 2rem; margin-top: 50px;">Filter Set Metrics</h3>
+
+                        <div class="sut-metric-block">
+                          <div class="sut-metric-header-row">
+                            <h4>Available Diagrams</h4>
+                            <div class="sut-metric-circles">
+                              <div class="sut-circle sut-blue"></div>
+                              <div class="sut-circle sut-green"></div>
+                              <div class="sut-circle sut-yellow"></div>
+                              <span class="sut-plus-indicator">+100</span>
+                            </div>
+                          </div>
+                          <div class="sut-metric-value">Current: 100+</div>
+                          <div class="sut-metric-progress-bar">
+                            <div class="sut-progress sut-blue" style="width: 75%;"></div>
+                          </div>
+                          <div class="sut-metric-details">
+                            <span class="sut-metric-label">Target: Expanding</span>
+                          </div>
+                        </div>
+
+                        <div class="sut-metric-block sut-right-aligned">
+                          <div class="sut-metric-header-row">
+                            <h4>Documentation Completeness</h4>
+                            <div class="sut-metric-value">95%</div>
+                          </div>
+                          <div class="sut-metric-progress-bar">
+                            <div class="sut-progress sut-green" style="width: 95%;"></div>
+                          </div>
+                          <div class="sut-metric-details">
+                            <span class="sut-metric-label">Basic</span>
+                            <span class="sut-metric-label">Comprehensive</span>
+                          </div>
+                        </div>
+
+                        <div class="sut-metric-block">
+                          <div class="sut-metric-header-row">
+                            <h4>Design Variations</h4>
+                            <div class="sut-metric-value">15 Sets</div>
+                          </div>
+                          <div class="sut-metric-progress-bar">
+                            <div class="sut-progress sut-yellow" style="width: 60%;"></div>
+                          </div>
+                          <div class="sut-metric-details">
+                            <span class="sut-metric-label">Standard</span>
+                            <span class="sut-metric-label">Custom</span>
+                          </div>
+                        </div>
+
+
+                      </div>
+
+                      <!-- Final CTA -->
+                      <div class="filter-cta-container">
+                        <h3 style="margin-bottom: 20px; font-size: 1.6rem;">
+                          Ready to find the perfect filter set for your application?
+                        </h3>
+                        <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="foxx-cta-button">Learn More</a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
 
-              <div class="filter-points-row">
-                <div class="filter-point-item" data-id="inlet">
-                  <div class="filter-point-dot"></div>
-                  <span>Inlet Chamber</span>
-                </div>
-                <div class="filter-point-item" data-id="filter">
-                  <div class="filter-point-dot"></div>
-                  <span>Filter Medium</span>
-                </div>
-                <div class="filter-point-item" data-id="connector">
-                  <div class="filter-point-dot"></div>
-                  <span>Connection Seal</span>
-                </div>
-                <div class="filter-point-item" data-id="outlet">
-                  <div class="filter-point-dot"></div>
-                  <span>Outlet Port</span>
-                </div>
-              </div>
+              <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  // Tab switching functionality
+                  const tabButtons = document.querySelectorAll('.filter-config-tabs > div');
+                  const tabContents = document.querySelectorAll('.filter-tab-content');
 
-              <div class="filter-diagram-footer">
-                <h3>CFD 1 Configuration</h3>
-                <div class="filter-model-number">Model: F-1000</div>
-              </div>
-            </div>
+                  tabButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                      // Remove active class from all buttons and contents
+                      tabButtons.forEach(btn => btn.classList.remove('filter-tab-active'));
+                      tabContents.forEach(content => content.classList.remove('active'));
 
-            <div class="filter-cta-container">
-              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="filter-primary-btn">Request CFD 1 Quote</a>
-            </div>
+                      // Add active class to clicked button
+                      this.classList.add('filter-tab-active');
 
-            <!-- Specs Grid for Standard Filter -->
-            <div class="filter-specs-grid">
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm3.707-9.293l-4-4a1 1 0 00-1.414 0l-4 4a1 1 0 001.414 1.414L11 8.414V14a1 1 0 002 0V8.414l3.293 3.293a1 1 0 001.414-1.414z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Flow Rate</h4>
-                  <p>10-25 L/min standard operating flow</p>
-                </div>
-              </div>
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M3 4.25A.75.75 0 013.75 3.5h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 4.25zM6 10.25a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H6.75a.75.75 0 01-.75-.75zM9 16.25a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Filter Grade</h4>
-                  <p>0.2-5 micron filtration capacity</p>
-                </div>
-              </div>
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M10 2a2 2 0 00-2 2v10.101C7.081 14.427 6.5 15.631 6.5 17c0 2.486 1.989 4.5 4.5 4.5s4.5-2.014 4.5-4.5c0-1.369-.581-2.573-1.5-3.899V4a2 2 0 00-2-2h-2zm2 2v10.764c.739.57 1.5 1.442 1.5 2.736 0 1.38-1.12 2.5-2.5 2.5S8.5 18.88 8.5 17.5c0-1.294.761-2.166 1.5-2.736V4h2z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Temperature</h4>
-                  <p>Operating range: 5-80°C</p>
-                </div>
-              </div>
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M10.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM10.5 6c1.574 1.574 3.906 1.574 5.48 0a4.5 4.5 0 10-5.48 0zm9.344 5.344l-3.5 3.5a2 2 0 01-2.828 0l-1.672-1.672a2 2 0 010-2.828l3.5-3.5a3 3 0 00-2.011 5.172l-5.207 5.207a3 3 0 104.243 4.243L18.5 13.258a3 3 0 001.344-5.914z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Material</h4>
-                  <p>Medical-grade polypropylene</p>
-                </div>
-              </div>
-            </div>
+                      // Show corresponding tab content
+                      const tabId = this.getAttribute('data-tab');
+                      document.getElementById(`${tabId}-tab`).classList.add('active');
+                    });
+                  });
 
-            <div class="filter-cta-container">
-              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/tubing-sets" class="filter-primary-btn">Request Filter Set Quote</a>
-            </div>
-          </div>
+                  // Point marker and label interaction
+                  setupPointInteractions();
 
-          <!-- High-Capacity Filter Set Tab Content -->
-          <div class="filter-tab-content" id="high-capacity-tab">
-            <div class="filter-diagram-container">
-              <div class="filter-diagram-box">
-                <!-- SVG Diagram for High Capacity Filter -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100" width="100%" height="auto">
-                  <g transform="translate(100,20)">
-                    <!-- High-Flow Inlet -->
-                    <rect x="0" y="15" width="80" height="50" fill="#2d3748" rx="5"/>
-                    <circle cx="20" cy="40" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
+                  // Animation on scroll
+                  setTimeout(() => {
+                    document.querySelector('.filter-animate-on-scroll').classList.add('animate-active');
+                  }, 500);
+                });
 
-                    <!-- Pre-Filter Stage -->
-                    <rect x="130" y="10" width="120" height="60" fill="#4a5568" rx="5"/>
-                    <line x1="80" y1="40" x2="130" y2="40" stroke="#a0aec0" stroke-width="10"/>
+                function setupPointInteractions() {
+                  // Point markers hovering effect
+                  const pointMarkers = document.querySelectorAll('.filter-point-marker');
+                  const pointItems = document.querySelectorAll('.filter-point-item');
 
-                    <!-- Main Filtration -->
-                    <rect x="300" y="10" width="120" height="60" fill="#4a5568" rx="5"/>
-                    <line x1="250" y1="40" x2="300" y2="40" stroke="#a0aec0" stroke-width="10"/>
+                  // When hovering over markers
+                  pointMarkers.forEach(marker => {
+                    marker.addEventListener('mouseenter', function() {
+                      const pointId = this.getAttribute('data-point');
+                      highlightPoint(pointId);
+                    });
 
-                    <!-- Enhanced Outlet -->
-                    <rect x="470" y="15" width="80" height="50" fill="#3f51b5" rx="5"/>
-                    <line x1="420" y1="40" x2="470" y2="40" stroke="#a0aec0" stroke-width="10"/>
-                    <circle cx="530" cy="40" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
-                  </g>
-                </svg>
+                    marker.addEventListener('mouseleave', function() {
+                      resetHighlights();
+                    });
+                  });
 
-                <!-- Point markers positioned over diagram -->
-                <div class="filter-point-marker" data-point="inlet" style="top: 50%; left: 10%;"></div>
-                <div class="filter-point-marker" data-point="pre-filter" style="top: 50%; left: 30%;"></div>
-                <div class="filter-point-marker" data-point="main-filter" style="top: 50%; left: 55%;"></div>
-                <div class="filter-point-marker" data-point="outlet" style="top: 50%; left: 85%;"></div>
-              </div>
+                  // When hovering over labels
+                  pointItems.forEach(item => {
+                    item.addEventListener('mouseenter', function() {
+                      const pointId = this.getAttribute('data-id');
+                      highlightPoint(pointId);
+                    });
 
-              <div class="filter-points-row">
-                <div class="filter-point-item" data-id="inlet">
-                  <div class="filter-point-dot"></div>
-                  <span>High-Flow Inlet</span>
-                </div>
-                <div class="filter-point-item" data-id="pre-filter">
-                  <div class="filter-point-dot"></div>
-                  <span>Pre-Filter Stage</span>
-                </div>
-                <div class="filter-point-item" data-id="main-filter">
-                  <div class="filter-point-dot"></div>
-                  <span>Main Filtration</span>
-                </div>
-                <div class="filter-point-item" data-id="outlet">
-                  <div class="filter-point-dot"></div>
-                  <span>Enhanced Outlet</span>
-                </div>
-              </div>
+                    item.addEventListener('mouseleave', function() {
+                      resetHighlights();
+                    });
+                  });
+                }
 
-              <div class="filter-diagram-footer">
-                <h3>CFD 2 Configuration</h3>
-                <div class="filter-model-number">Model: F-2000</div>
-              </div>
-            </div>
+                function highlightPoint(pointId) {
+                  // Highlight the point marker
+                  const marker = document.querySelector(`.filter-point-marker[data-point="${pointId}"]`);
+                  if (marker) {
+                    marker.style.transform = 'translate(-50%, -50%) scale(1.2)';
+                    marker.style.boxShadow = '0 0 15px rgba(9, 94, 167, 0.7)';
+                    marker.style.animationPlayState = 'paused';
+                  }
 
-            <div class="filter-cta-container">
-              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="filter-primary-btn">Request CFD 2 Quote</a>
-            </div>
+                  // Highlight the point label
+                  const item = document.querySelector(`.filter-point-item[data-id="${pointId}"]`);
+                  if (item) {
+                    item.style.color = '#095ea7';
+                    item.style.fontWeight = 'bold';
+                    item.style.transform = 'translateY(-5px)';
+                        }
+                }
 
-            <!-- Specs Grid for High-Capacity Filter -->
-            <div class="filter-specs-grid">
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.5142 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm3.707-9.293l-4-4a1 1 0 00-1.414 0l-4 4a1 1 0 001.414 1.414L11 8.414V14a1 1 0 002 0V8.414l3.293 3.293a1 1 0 001.414-1.414z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Flow Rate</h4>
-                  <p>30-50 L/min high-volume flow</p>
-                </div>
-              </div>
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M3 4.25A.75.75 0 013.75 3.5h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 4.25zM6 10.25a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H6.75a.75.75 0 01-.75-.75zM9 16.25a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Dual Filtration</h4>
-                  <p>Pre-filter + 0.1 micron main filter</p>
-                </div>
-              </div>
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M10 2a2 2 0 00-2 2v10.101C7.081 14.427 6.5 15.631 6.5 17c0 2.486 1.989 4.5 4.5 4.5s4.5-2.014 4.5-4.5c0-1.369-.581-2.573-1.5-3.899V4a2 2 0 00-2-2h-2zm2 2v10.764c.739.57 1.5 1.442 1.5 2.736 0 1.38-1.12 2.5-2.5 2.5S8.5 18.88 8.5 17.5c0-1.294.761-2.166 1.5-2.736V4h2z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Temperature</h4>
-                  <p>Operating range: 5-95°C</p>
-                </div>
-              </div>
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M10.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM10.5 6c1.574 1.574 3.906 1.574 5.48 0a4.5 4.5 0 10-5.48 0zm9.344 5.344l-3.5 3.5a2 2 0 01-2.828 0l-1.672-1.672a2 2 0 010-2.828l3.5-3.5a3 3 0 00-2.011 5.172l-5.207 5.207a3 3 0 104.243 4.243L18.5 13.258a3 3 0 001.344-5.914z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Material</h4>
-                  <p>Enhanced PTFE with reinforcement</p>
-                </div>
-              </div>
-            </div>
+                function resetHighlights() {
+                  // Reset all point markers
+                  document.querySelectorAll('.filter-point-marker').forEach(marker => {
+                    marker.style.transform = '';
+                    marker.style.boxShadow = '';
+                    marker.style.animationPlayState = 'running';
+                  });
 
-            <div class="filter-cta-container">
-              <a href="#" class="filter-primary-btn">Learn More About CFD 2</a>
-            </div>
-          </div>
-
-          <!-- Specialized Filter Set Tab Content -->
-          <div class="filter-tab-content" id="specialized-tab">
-            <div class="filter-diagram-container">
-              <div class="filter-diagram-box">
-                <!-- SVG Diagram for Specialized Filter -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120" width="100%" height="auto">
-                  <g transform="translate(100,20)">
-                    <!-- Precision Inlet -->
-                    <rect x="0" y="20" width="100" height="60" fill="#2d3748" rx="8"/>
-                    <rect x="20" y="10" width="30" height="20" fill="#4a5568"/>
-                    <circle cx="20" cy="50" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
-
-                    <!-- Custom Membrane Section -->
-                    <path d="M100,50 Q 200,20 300,50 Q 400,80 500,50" 
-                          fill="none" stroke="#a0aec0" stroke-width="15"/>
-
-                    <!-- Monitoring Sensor -->
-                    <rect x="300" y="10" width="140" height="80" fill="#4a5568" rx="10"/>
-                    <circle cx="370" cy="50" r="15" fill="#48bb78" stroke="#fff" stroke-width="2"/>
-
-                    <!-- Controlled Outlet -->
-                    <rect x="500" y="20" width="100" height="60" fill="#3f51b5" rx="8"/>
-                    <rect x="550" y="10" width="30" height="20" fill="#283593"/>
-                    <circle cx="580" cy="50" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
-                  </g>
-                </svg>
-
-                  <!-- Section labels hidden in SVG, controlled by HTML -->
-                </svg>
-
-                <!-- Point markers positioned over diagram -->
-                <div class="filter-point-marker" data-point="inlet" style="top: 50%; left: 10%;"></div>
-                <div class="filter-point-marker" data-point="membrane" style="top: 50%; left: 35%;"></div>
-                <div class="filter-point-marker" data-point="sensor" style="top: 50%; left: 60%;"></div>
-                <div class="filter-point-marker" data-point="outlet" style="top: 50%; left: 85%;"></div>
-              </div>
-
-              <div class="filter-points-row">
-                <div class="filter-point-item" data-id="inlet">
-                  <div class="filter-point-dot"></div>
-                  <span>Precision Inlet</span>
-                </div>
-                <div class="filter-point-item" data-id="membrane">
-                  <div class="filter-point-dot"></div>
-                  <span>Custom Membrane</span>
-                </div>
-                <div class="filter-point-item" data-id="sensor">
-                  <div class="filter-point-dot"></div>
-                  <span>Monitoring Sensor</span>
-                </div>
-                <div class="filter-point-item" data-id="outlet">
-                  <div class="filter-point-dot"></div>
-                  <span>Controlled Outlet</span>
-                </div>
-              </div>
-
-              <div class="filter-diagram-footer">
-                <h3>CFD 3 Configuration</h3>
-                <div class="filter-model-number">Model: F-3000</div>
-              </div>
-            </div>
-
-            <div class="filter-cta-container">
-              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="filter-primary-btn">Request CFD 3 Quote</a>
-            </div>
-
-            <!-- Specs Grid for Specialized Filter -->
-            <div class="filter-specs-grid">
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm3.707-9.293l-4-4a1 1 0 00-1.414 0l-4 4a1 1 0 001.414 1.414L11 8.414V14a1 1 0 002 0V8.414l3.293 3.293a1 1 0 001.414-1.414z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Precision Flow</h4>
-                  <p>5-40 L/min with digital control</p>
-                </div>
-              </div>
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M3 4.25A.75.75 0 013.75 3.5h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 4.25zM6 10.25a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H6.75a.75.75 0 01-.75-.75zM9 16.25a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Advanced Filtration</h4>
-                  <p>Custom filtration down to 0.05 microns</p>
-                </div>
-              </div>
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M10 2a2 2 0 00-2 2v10.101C7.081 14.427 6.5 15.631 6.5 17c0 2.486 1.989 4.5 4.5 4.5s4.5-2.014 4.5-4.5c0-1.369-.581-2.573-1.5-3.899V4a2 2 0 00-2-2h-2zm2 2v10.764c.739.57 1.5 1.442 1.5 2.736 0 1.38-1.12 2.5-2.5 2.5S8.5 18.88 8.5 17.5c0-1.294.761-2.166 1.5-2.736V4h2z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Temperature Control</h4>
-                  <p>Integrated temperature monitoring</p>
-                </div>
-              </div>
-              <div class="filter-specs-item">
-                <div class="filter-specs-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M10.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM10.5 6c1.574 1.574 3.906 1.574 5.48 0a4.5 4.5 0 10-5.48 0zm9.344 5.344l-3.5 3.5a2 2 0 01-2.828 0l-1.672-1.672a2 2 0 010-2.828l3.5-3.5a3 3 0 00-2.011 5.172l-5.207 5.207a3 3 0 104.243 4.243L18.5 13.258a3 3 0 001.344-5.914z" />
-                  </svg>
-                </div>
-                <div class="filter-specs-content">
-                  <h4>Material Options</h4>
-                  <p>Custom materials for specific applications</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="filter-cta-container">
-              <a href="#" class="filter-primary-btn">Learn More About CFD 3</a>
-            </div>
-          </div>
-
-          <!-- Features Section -->
-          <h3 class="filter-section-title" style="font-size: 2rem; margin-top: 50px;">Key Features</h3>
-
-          <div class="filter-features-grid">
-            <div class="filter-features-item">
-              <div class="filter-feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM11 7h2v8h-2V7zm0 10h2v2h-2v-2z"/>
-                </svg>
-              </div>
-              <div class="filter-feature-content">
-                <h5>Diagram Library</h5>
-                <p>Access all tubing set diagrams and configurations</p>
-              </div>
-            </div>
-
-            <div class="filter-features-item">
-              <div class="filter-feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
-                </svg>
-              </div>
-              <div class="filter-feature-content">
-                <h5>Technical Documentation</h5>
-                <p>Complete specifications and material compatibility</p>
-              </div>
-            </div>
-
-            <div class="filter-features-item">
-              <div class="filter-feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"/>
-                </svg>
-              </div>
-              <div class="filter-feature-content">
-                <h5>Inquiry Support</h5>
-                <p>Direct technical assistance for your specific needs</p>
-              </div>
-            </div>
-
-            <div class="filter-features-item">
-              <div class="filter-feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                </svg>
-              </div>
-              <div class="filter-feature-content">
-                <h5>Bulk Inquiry Support</h5>
-                <p>Large-scale project assistance and customization</p>
-              </div>
-            </div>
-            <div class="filter-features-item">
-              <div class="filter-feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm4.293-11.707L11 13.586l-2.293-2.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414z" />
-                </svg>
-              </div>
-              <div class="filter-feature-content">
-                <h5>Superior Filtration</h5>
-                <p>Advanced media technology removes contaminants with exceptional efficiency</p>
-              </div>
-            </div>
-            <div class="filter-features-item">
-              <div class="filter-feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M12 2C9.243 2 7 4.243 7 7v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7c0-2.757-2.243-5-5-5zm0 2c1.654 0 3 1.346 3 3v3H9V7c0-1.654 1.346-3 3-3zm-6 8h12v8H6v-8z" />
-                </svg>
-              </div>
-              <div class="filter-feature-content">
-                <h5>Secure Connections</h5>
-                <p>Leak-proof connections with proprietary sealing technology</p>
-              </div>
-            </div>
-            <div class="filter-features-item">
-              <div class="filter-feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M21 14.5v-2.25a1.5 1.5 0 00-1.5-1.5h-1.5v-3h1.5A1.5 1.5 0 0021 6.25V4a2 2 0 00-2-2H5a2 2 0 00-2 2v2.25a1.5 1.5 0 001.5 1.5H6v3H4.5A1.5 1.5 0 003 12.25v2.25a2 2 0 002 2h1.5v3H5A1.5 1.5 0 003 21.75V24h18v-2.25a1.5 1.5 0 00-1.5-1.5h-1.5v-3H19a2 2 0 002-2z" />
-                </svg>
-              </div>
-              <div class="filter-feature-content">
-                <h5>Custom Integration</h5>
-                <p>Tailored solutions for seamless integration with existing systems</p>
-              </div>
-            </div>
-            <div class="filter-features-item">
-              <div class="filter-feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-3.293-6.707l1.586 1.586a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414L10 13.586l-.879-.879a1 1 0 10-1.414 1.414l1 1z" />
-                </svg>
-              </div>
-              <div class="filter-feature-content">
-                <h5>Certified Quality</h5>
-                <p>Manufactured and tested to meet strict industry standards</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Metrics Display Section -->
-          <div class="sut-metrics-display">
-            <h3 class="filter-section-title" style="font-size: 2rem; margin-top: 50px;">Filter Set Metrics</h3>
-
-            <div class="sut-metric-block">
-              <div class="sut-metric-header-row">
-                <h4>Available Diagrams</h4>
-                <div class="sut-metric-circles">
-                  <div class="sut-circle sut-blue"></div>
-                  <div class="sut-circle sut-green"></div>
-                  <div class="sut-circle sut-yellow"></div>
-                  <span class="sut-plus-indicator">+100</span>
-                </div>
-              </div>
-              <div class="sut-metric-value">Current: 100+</div>
-              <div class="sut-metric-progress-bar">
-                <div class="sut-progress sut-blue" style="width: 75%;"></div>
-              </div>
-              <div class="sut-metric-details">
-                <span class="sut-metric-label">Target: Expanding</span>
-              </div>
-            </div>
-
-            <div class="sut-metric-block sut-right-aligned">
-              <div class="sut-metric-header-row">
-                <h4>Documentation Completeness</h4>
-                <div class="sut-metric-value">95%</div>
-              </div>
-              <div class="sut-metric-progress-bar">
-                <div class="sut-progress sut-green" style="width: 95%;"></div>
-              </div>
-              <div class="sut-metric-details">
-                <span class="sut-metric-label">Basic</span>
-                <span class="sut-metric-label">Comprehensive</span>
-              </div>
-            </div>
-
-            <div class="sut-metric-block">
-              <div class="sut-metric-header-row">
-                <h4>Design Variations</h4>
-                <div class="sut-metric-value">15 Sets</div>
-              </div>
-              <div class="sut-metric-progress-bar">
-                <div class="sut-progress sut-yellow" style="width: 60%;"></div>
-              </div>
-              <div class="sut-metric-details">
-                <span class="sut-metric-label">Standard</span>
-                <span class="sut-metric-label">Custom</span>
-              </div>
-            </div>
-
-            
-          </div>
-
-          <!-- Final CTA -->
-          <div class="filter-cta-container">
-            <h3 style="margin-bottom: 20px; font-size: 1.6rem;">
-              Ready to find the perfect filter set for your application?
-            </h3>
-            <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="foxx-cta-button">Learn More</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Tab switching functionality
-      const tabButtons = document.querySelectorAll('.filter-config-tabs > div');
-      const tabContents = document.querySelectorAll('.filter-tab-content');
-
-      tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          // Remove active class from all buttons and contents
-          tabButtons.forEach(btn => btn.classList.remove('filter-tab-active'));
-          tabContents.forEach(content => content.classList.remove('active'));
-
-          // Add active class to clicked button
-          this.classList.add('filter-tab-active');
-
-          // Show corresponding tab content
-          const tabId = this.getAttribute('data-tab');
-          document.getElementById(`${tabId}-tab`).classList.add('active');
-        });
-      });
-
-      // Point marker and label interaction
-      setupPointInteractions();
-
-      // Animation on scroll
-      setTimeout(() => {
-        document.querySelector('.filter-animate-on-scroll').classList.add('animate-active');
-      }, 500);
-    });
-
-    function setupPointInteractions() {
-      // Point markers hovering effect
-      const pointMarkers = document.querySelectorAll('.filter-point-marker');
-      const pointItems = document.querySelectorAll('.filter-point-item');
-
-      // When hovering over markers
-      pointMarkers.forEach(marker => {
-        marker.addEventListener('mouseenter', function() {
-          const pointId = this.getAttribute('data-point');
-          highlightPoint(pointId);
-        });
-
-        marker.addEventListener('mouseleave', function() {
-          resetHighlights();
-        });
-      });
-
-      // When hovering over labels
-      pointItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-          const pointId = this.getAttribute('data-id');
-          highlightPoint(pointId);
-        });
-
-        item.addEventListener('mouseleave', function() {
-          resetHighlights();
-        });
-      });
-    }
-
-    function highlightPoint(pointId) {
-      // Highlight the point marker
-      const marker = document.querySelector(`.filter-point-marker[data-point="${pointId}"]`);
-      if (marker) {
-        marker.style.transform = 'translate(-50%, -50%) scale(1.2)';
-        marker.style.boxShadow = '0 0 15px rgba(9, 94, 167, 0.7)';
-        marker.style.animationPlayState = 'paused';
-      }
-
-      // Highlight the point label
-      const item = document.querySelector(`.filter-point-item[data-id="${pointId}"]`);
-      if (item) {
-        item.style.color = '#095ea7';
-        item.style.fontWeight = 'bold';
-        item.style.transform = 'translateY(-5px)';
-            }
-    }
-
-    function resetHighlights() {
-      // Reset all point markers
-      document.querySelectorAll('.filter-point-marker').forEach(marker => {
-        marker.style.transform = '';
-        marker.style.boxShadow = '';
-        marker.style.animationPlayState = 'running';
-      });
-
-      // Reset all point labels
-      document.querySelectorAll('.filter-point-item').forEach(item => {
-        item.style.color = '';
-        item.style.fontWeight = '';
-        item.style.transform = '';
-      });
-    }
-  </script>
-</body>
-</html>
+                  // Reset all point labels
+                  document.querySelectorAll('.filter-point-item').forEach(item => {
+                    item.style.color = '';
+                    item.style.fontWeight = '';
+                    item.style.transform = '';
+                  });
+                }
+              </script>
+            </body>
+            </html>
