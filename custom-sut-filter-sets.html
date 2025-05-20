@@ -15,7 +15,7 @@
     .sut-metrics-display {
       margin-bottom: 50px;
     }
-    
+
     .sut-metric-block {
       background-color: #fff;
       border-radius: 8px;
@@ -24,31 +24,31 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       width: 85%;
     }
-    
+
     .sut-metric-block.sut-right-aligned {
       margin-left: auto;
       margin-right: 0;
     }
-    
+
     .sut-metric-header-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 15px;
     }
-    
+
     .sut-metric-header-row h4 {
       margin: 0;
       font-size: 1.3rem;
       color: #333;
       font-weight: 600;
     }
-    
+
     .sut-metric-circles {
       display: flex;
       align-items: center;
     }
-    
+
     .sut-circle {
       width: 24px;
       height: 24px;
@@ -56,31 +56,31 @@
       margin-left: -5px;
       border: 2px solid white;
     }
-    
+
     .sut-circle.sut-blue {
       background-color: #4285f4;
     }
-    
+
     .sut-circle.sut-green {
       background-color: #34a853;
     }
-    
+
     .sut-circle.sut-yellow {
       background-color: #fbbc05;
     }
-    
+
     .sut-plus-indicator {
       margin-left: 8px;
       font-weight: 600;
       font-size: 1rem;
     }
-    
+
     .sut-metric-value {
       font-weight: 700;
       font-size: 1.4rem;
       color: #333;
     }
-    
+
     .sut-metric-progress-bar {
       height: 10px;
       background-color: #e0e0e0;
@@ -88,31 +88,31 @@
       overflow: hidden;
       margin-bottom: 10px;
     }
-    
+
     .sut-progress {
       height: 100%;
       border-radius: 5px;
     }
-    
+
     .sut-progress.sut-blue {
       background-color: #4285f4;
     }
-    
+
     .sut-progress.sut-green {
       background-color: #34a853;
     }
-    
+
     .sut-progress.sut-yellow {
       background-color: #fbbc05;
     }
-    
+
     .sut-metric-details {
       display: flex;
       justify-content: space-between;
       font-size: 1rem;
       color: #666;
     }
-    
+
     .sut-metric-current, .sut-metric-target, .sut-metric-label {
       font-weight: 500;
     }
@@ -173,12 +173,7 @@
     }
 
     .filter-section-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: #095ea7;
-      margin: 15px auto 0;
+      display: none;
     }
 
     .filter-text-center {
@@ -406,13 +401,13 @@
       padding: 25px;
       background-color: #fff;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      border: 1px solid #e5e7eb;
       transition: all 0.3s ease;
     }
 
     .filter-features-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      border-color: #095ea7;
     }
 
     .filter-feature-icon {
@@ -493,12 +488,12 @@
       .filter-features-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      
+
       .filter-diagram-footer {
         flex-direction: column;
         text-align: center;
       }
-      
+
       .filter-diagram-footer h3 {
         margin-bottom: 5px;
       }
@@ -508,16 +503,16 @@
       .filter-section-title {
         font-size: 2.2rem;
       }
-      
+
       .filter-config-tabs {
         flex-direction: column;
       }
-      
+
       .filter-specs-grid, 
       .filter-features-grid {
         grid-template-columns: 1fr;
       }
-      
+
       .filter-point-item span {
         font-size: 0.9rem;
       }
@@ -527,7 +522,7 @@
       .filter-points-row {
         flex-wrap: wrap;
       }
-      
+
       .filter-point-item {
         flex: 0 0 50%;
         margin-bottom: 15px;
@@ -541,64 +536,75 @@
       <div class="filter-container">
         <div class="filter-diagram-content filter-animate-on-scroll">
           <!-- Header -->
-          <h2 class="filter-section-title">Custom Filter Sets</h2>
-          <p class="filter-text-center">
-            Explore our range of high-quality filter sets designed for optimal performance and efficiency. 
-            Choose from multiple configurations to meet your specific application requirements.
-          </p>
-          
+          <div style="display: flex; align-items: center; gap: 60px; margin-bottom: 80px; background: #f8fafc; padding: 40px; border-radius: 12px;">
+            <div style="flex: 1.2;">
+              <h2 style="text-align: left; font-size: 2.5rem; margin-bottom: 20px; color: #333; font-weight: 700; position: relative;">Filter Sets</h2>
+              <p style="font-size: 1.1rem; line-height: 1.7; color: #4a5568; margin-top: 20px; margin-bottom: 30px;">
+                Designed to remove particulates, bacteria, and other contaminants, safeguarding product integrity during bioprocessing, integrated into custom assemblies, these filter sets enhance process reliability and reduce cross-contamination risk.
+              </p>
+              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" 
+                 class="filter-primary-btn" 
+                 style="font-size: 1.1rem; padding: 16px 32px; display: inline-block;">
+                Explore Filter Sets
+              </a>
+            </div>
+            <div style="flex: 1;">
+              <img src="https://foxxbioprocess.com/cdn/shop/files/bioprocess-web-custom-sut-area-cfd-diagrams-filter-sets_free_size_k8yclu.png?v=1728504642&width=1920"
+                   alt="Bioprocess Filter Sets"
+                   style="width: 90%; height: auto; border-radius: 12px; display: block; margin: 0 auto;">
+            </div>
+          </div>
+
           <!-- Configuration Tabs -->
           <div class="filter-config-tabs">
-            <div data-tab="standard" class="filter-tab-active">Standard Filter Set</div>
-            <div data-tab="high-capacity">High-Capacity Filter Set</div>
-            <div data-tab="specialized">Specialized Filter Set</div>
+            <div data-tab="standard" class="filter-tab-active">CFD 1</div>
+            <div data-tab="high-capacity">CFD 2</div>
+            <div data-tab="specialized">CFD 3</div>
+            <div style="display: flex; align-items: center; gap: 10px; padding: 15px 20px; color: #095ea7;">
+              <span style="background: #e3f2fd; color: #095ea7; padding: 4px 8px; border-radius: 12px; font-size: 0.9rem; font-weight: 600;">100+ Drawings</span>
+              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" 
+                 style="text-decoration: none; color: #095ea7; font-weight: 600; font-size: 0.9rem;">
+                View All →
+              </a>
+            </div>
           </div>
-          
+
           <!-- Standard Filter Set Tab Content -->
           <div class="filter-tab-content active" id="standard-tab">
             <div class="filter-diagram-container">
               <div class="filter-diagram-box">
                 <!-- SVG Diagram -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="100%" height="auto">
-                  <!-- Filter Housing - Left Section (Inlet Chamber) -->
-                  <rect x="120" y="70" width="140" height="90" fill="#9e9e9e" rx="5" />
-                  
-                  <!-- Small circle in inlet chamber -->
-                  <circle cx="150" cy="90" r="12" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  <!-- Large circle in inlet chamber -->
-                  <circle cx="180" cy="110" r="28" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  
-                  <!-- Middle Section (Filter Medium) -->
-                  <rect x="310" y="85" width="100" height="60" fill="#9e9e9e" rx="5" />
-                  <!-- Connect line between inlet and filter -->
-                  <rect x="260" y="105" width="50" height="10" fill="#cfcfcf" />
-                  <!-- Circle in filter medium -->
-                  <circle cx="360" cy="110" r="20" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  
-                  <!-- Connection line between filter and seal -->
-                  <rect x="410" y="105" width="100" height="10" fill="#cfcfcf" />
-                  
-                  <!-- Connection Seal -->
-                  <circle cx="542" cy="110" r="25" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  <!-- Small highlight in connection seal -->
-                  <circle cx="532" cy="100" r="6" fill="#ffffff" opacity="0.8" />
-                  <circle cx="550" cy="95" r="3" fill="#ffffff" opacity="0.6" />
-                  
-                  <!-- Outlet Section -->
-                  <rect x="600" y="70" width="130" height="90" fill="#3f51b5" rx="5" />
-                  <!-- Circle in outlet with highlight -->
-                  <circle cx="665" cy="110" r="25" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  <circle cx="655" cy="100" r="8" fill="#ffffff" opacity="0.8" />
-                  <circle cx="670" cy="95" r="4" fill="#ffffff" opacity="0.6" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100" width="100%" height="auto">
+                  <g transform="translate(100,20)">
+                    <!-- Inlet Chamber (Dark Gray) -->
+                    <rect x="0" y="20" width="100" height="40" fill="#2d3748" rx="5"/>
+                    <circle cx="20" cy="40" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
+
+                    <!-- Connection Tube with Green Indicator -->
+                    <rect x="100" y="35" width="150" height="10" fill="#a0aec0"/>
+                    <rect x="130" y="32" width="20" height="16" fill="#48bb78"/>
+
+                    <!-- Filter Medium (Gray) -->
+                    <rect x="250" y="10" width="160" height="60" fill="#4a5568" rx="10"/>
+                    <line x1="250" y1="40" x2="410" y2="40" stroke="#718096" stroke-width="2"/>
+
+                    <!-- Connection Tube with Red Indicator -->
+                    <rect x="410" y="35" width="150" height="10" fill="#a0aec0"/>
+                    <rect x="440" y="32" width="20" height="16" fill="#f56565"/>
+
+                    <!-- Outlet Port (Blue) -->
+                    <rect x="560" y="20" width="100" height="40" fill="#3f51b5" rx="5"/>
+                    <circle cx="640" cy="40" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
+                  </g>
                 </svg>
-                
+
                 <!-- Point markers positioned over diagram -->
                 <div class="filter-point-marker" data-point="inlet" style="top: 50%; left: 15%;"></div>
                 <div class="filter-point-marker" data-point="filter" style="top: 50%; left: 40%;"></div>
                 <div class="filter-point-marker" data-point="connector" style="top: 50%; left: 65%;"></div>
                 <div class="filter-point-marker" data-point="outlet" style="top: 50%; left: 85%;"></div>
               </div>
-              
+
               <div class="filter-points-row">
                 <div class="filter-point-item" data-id="inlet">
                   <div class="filter-point-dot"></div>
@@ -617,13 +623,17 @@
                   <span>Outlet Port</span>
                 </div>
               </div>
-              
+
               <div class="filter-diagram-footer">
-                <h3>Standard Filter Configuration</h3>
-                <div class="filter-model-number">Model: F-XXXX-XXXX</div>
+                <h3>CFD 1 Configuration</h3>
+                <div class="filter-model-number">Model: F-1000</div>
               </div>
             </div>
-            
+
+            <div class="filter-cta-container">
+              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="filter-primary-btn">Request CFD 1 Quote</a>
+            </div>
+
             <!-- Specs Grid for Standard Filter -->
             <div class="filter-specs-grid">
               <div class="filter-specs-item">
@@ -671,67 +681,45 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="filter-cta-container">
               <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/tubing-sets" class="filter-primary-btn">Request Filter Set Quote</a>
             </div>
           </div>
-          
+
           <!-- High-Capacity Filter Set Tab Content -->
           <div class="filter-tab-content" id="high-capacity-tab">
             <div class="filter-diagram-container">
               <div class="filter-diagram-box">
                 <!-- SVG Diagram for High Capacity Filter -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="100%" height="auto">
-                  <!-- Left Section (High-Flow Inlet) -->
-                  <rect x="80" y="70" width="120" height="90" fill="#9e9e9e" rx="5" />
-                  <!-- Small circle near inlet -->
-                  <circle cx="100" cy="90" r="12" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  <!-- Large circle in inlet -->
-                  <circle cx="140" cy="110" r="28" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  
-                  <!-- Connection line between inlet and pre-filter -->
-                  <rect x="200" y="105" width="50" height="10" fill="#cfcfcf" />
-                  
-                  <!-- Pre-Filter Stage -->
-                  <rect x="250" y="70" width="120" height="90" fill="#9e9e9e" rx="5" />
-                  <!-- Small circle in pre-filter -->
-                  <circle cx="270" cy="90" r="10" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  <!-- Large circle in pre-filter -->
-                  <circle cx="305" cy="110" r="28" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  <!-- Small highlight in pre-filter circle -->
-                  <circle cx="295" cy="100" r="6" fill="#ffffff" opacity="0.8" />
-                  
-                  <!-- Connection line between pre-filter and main filter -->
-                  <rect x="370" y="105" width="60" height="10" fill="#cfcfcf" />
-                  
-                  <!-- Main Filtration Section -->
-                  <rect x="430" y="70" width="120" height="90" fill="#9e9e9e" rx="5" />
-                  <!-- Small circle in main filter -->
-                  <circle cx="450" cy="90" r="10" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  <!-- Large circle in main filter -->
-                  <circle cx="485" cy="110" r="28" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  <!-- Small highlight in main filter -->
-                  <circle cx="475" cy="100" r="6" fill="#ffffff" opacity="0.8" />
-                  
-                  <!-- Connection line between main filter and outlet -->
-                  <rect x="550" y="105" width="50" height="10" fill="#cfcfcf" />
-                  
-                  <!-- Enhanced Outlet Section -->
-                  <rect x="600" y="70" width="120" height="90" fill="#3f51b5" rx="5" />
-                  <!-- Circle in outlet with highlight -->
-                  <circle cx="660" cy="110" r="28" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  <circle cx="650" cy="100" r="8" fill="#ffffff" opacity="0.8" />
-                  <circle cx="665" cy="95" r="4" fill="#ffffff" opacity="0.6" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100" width="100%" height="auto">
+                  <g transform="translate(100,20)">
+                    <!-- High-Flow Inlet -->
+                    <rect x="0" y="15" width="80" height="50" fill="#2d3748" rx="5"/>
+                    <circle cx="20" cy="40" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
+
+                    <!-- Pre-Filter Stage -->
+                    <rect x="130" y="10" width="120" height="60" fill="#4a5568" rx="5"/>
+                    <line x1="80" y1="40" x2="130" y2="40" stroke="#a0aec0" stroke-width="10"/>
+
+                    <!-- Main Filtration -->
+                    <rect x="300" y="10" width="120" height="60" fill="#4a5568" rx="5"/>
+                    <line x1="250" y1="40" x2="300" y2="40" stroke="#a0aec0" stroke-width="10"/>
+
+                    <!-- Enhanced Outlet -->
+                    <rect x="470" y="15" width="80" height="50" fill="#3f51b5" rx="5"/>
+                    <line x1="420" y1="40" x2="470" y2="40" stroke="#a0aec0" stroke-width="10"/>
+                    <circle cx="530" cy="40" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
+                  </g>
                 </svg>
-                
+
                 <!-- Point markers positioned over diagram -->
                 <div class="filter-point-marker" data-point="inlet" style="top: 50%; left: 10%;"></div>
                 <div class="filter-point-marker" data-point="pre-filter" style="top: 50%; left: 30%;"></div>
                 <div class="filter-point-marker" data-point="main-filter" style="top: 50%; left: 55%;"></div>
                 <div class="filter-point-marker" data-point="outlet" style="top: 50%; left: 85%;"></div>
               </div>
-              
+
               <div class="filter-points-row">
                 <div class="filter-point-item" data-id="inlet">
                   <div class="filter-point-dot"></div>
@@ -750,19 +738,23 @@
                   <span>Enhanced Outlet</span>
                 </div>
               </div>
-              
+
               <div class="filter-diagram-footer">
-                <h3>High-Capacity Filter Configuration</h3>
+                <h3>CFD 2 Configuration</h3>
                 <div class="filter-model-number">Model: F-2000</div>
               </div>
             </div>
-            
+
+            <div class="filter-cta-container">
+              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="filter-primary-btn">Request CFD 2 Quote</a>
+            </div>
+
             <!-- Specs Grid for High-Capacity Filter -->
             <div class="filter-specs-grid">
               <div class="filter-specs-item">
                 <div class="filter-specs-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm3.707-9.293l-4-4a1 1 0 00-1.414 0l-4 4a1 1 0 001.414 1.414L11 8.414V14a1 1 0 002 0V8.414l3.293 3.293a1 1 0 001.414-1.414z" />
+                    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.5142 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm3.707-9.293l-4-4a1 1 0 00-1.414 0l-4 4a1 1 0 001.414 1.414L11 8.414V14a1 1 0 002 0V8.414l3.293 3.293a1 1 0 001.414-1.414z" />
                   </svg>
                 </div>
                 <div class="filter-specs-content">
@@ -804,65 +796,49 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="filter-cta-container">
-              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/fitler-sets" class="filter-primary-btn">Learn More</a>
+              <a href="#" class="filter-primary-btn">Learn More About CFD 2</a>
             </div>
           </div>
-          
+
           <!-- Specialized Filter Set Tab Content -->
           <div class="filter-tab-content" id="specialized-tab">
             <div class="filter-diagram-container">
               <div class="filter-diagram-box">
                 <!-- SVG Diagram for Specialized Filter -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 220" width="100%" height="auto">
-                  <!-- Precision Inlet -->
-                  <rect x="80" y="70" width="110" height="90" fill="#9e9e9e" rx="5" />
-                  <!-- Small circle near inlet -->
-                  <circle cx="100" cy="90" r="10" fill="#0066cc" stroke="#fff" stroke-width="2" />
-                  <!-- Large circle in inlet -->
-                  <circle cx="135" cy="110" r="28" fill="#0066cc" stroke="#fff" stroke-width="3" />
-                  
-                  <!-- Connection line to membrane -->
-                  <rect x="190" y="105" width="40" height="10" fill="#cfcfcf" />
-                  
-                  <!-- Custom Membrane Housing -->
-                  <rect x="230" y="65" width="140" height="100" fill="#808080" rx="8" />
-                  <!-- Circle in membrane with highlight -->
-                  <circle cx="300" cy="110" r="32" fill="#0066cc" stroke="#fff" stroke-width="3" />
-                  <circle cx="290" cy="100" r="10" fill="#ffffff" opacity="0.7" />
-                  <circle cx="310" cy="95" r="5" fill="#ffffff" opacity="0.6" />
-                  
-                  <!-- Connection line to sensor -->
-                  <rect x="370" y="105" width="40" height="10" fill="#cfcfcf" />
-                  
-                  <!-- Monitoring Sensor Housing -->
-                  <rect x="410" y="75" width="100" height="70" fill="#616161" rx="5" />
-                  <!-- Circle in sensor with highlight -->
-                  <circle cx="460" cy="110" r="28" fill="#0066cc" stroke="#fff" stroke-width="3" />
-                  <circle cx="450" cy="100" r="8" fill="#ffffff" opacity="0.7" />
-                  <circle cx="470" cy="95" r="4" fill="#ffffff" opacity="0.6" />
-                  
-                  <!-- Connection line to outlet -->
-                  <rect x="510" y="105" width="40" height="10" fill="#cfcfcf" />
-                  
-                  <!-- Specialized Controlled Outlet -->
-                  <rect x="550" y="70" width="150" height="90" fill="#3f51b5" rx="5" />
-                  <!-- Circle in outlet with highlight -->
-                  <circle cx="625" cy="110" r="32" fill="#0066cc" stroke="#fff" stroke-width="3" />
-                  <circle cx="615" cy="100" r="10" fill="#ffffff" opacity="0.7" />
-                  <circle cx="635" cy="95" r="5" fill="#ffffff" opacity="0.6" />
-                  
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120" width="100%" height="auto">
+                  <g transform="translate(100,20)">
+                    <!-- Precision Inlet -->
+                    <rect x="0" y="20" width="100" height="60" fill="#2d3748" rx="8"/>
+                    <rect x="20" y="10" width="30" height="20" fill="#4a5568"/>
+                    <circle cx="20" cy="50" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
+
+                    <!-- Custom Membrane Section -->
+                    <path d="M100,50 Q 200,20 300,50 Q 400,80 500,50" 
+                          fill="none" stroke="#a0aec0" stroke-width="15"/>
+
+                    <!-- Monitoring Sensor -->
+                    <rect x="300" y="10" width="140" height="80" fill="#4a5568" rx="10"/>
+                    <circle cx="370" cy="50" r="15" fill="#48bb78" stroke="#fff" stroke-width="2"/>
+
+                    <!-- Controlled Outlet -->
+                    <rect x="500" y="20" width="100" height="60" fill="#3f51b5" rx="8"/>
+                    <rect x="550" y="10" width="30" height="20" fill="#283593"/>
+                    <circle cx="580" cy="50" r="8" fill="#4299e1" stroke="#fff" stroke-width="2"/>
+                  </g>
+                </svg>
+
                   <!-- Section labels hidden in SVG, controlled by HTML -->
                 </svg>
-                
+
                 <!-- Point markers positioned over diagram -->
                 <div class="filter-point-marker" data-point="inlet" style="top: 50%; left: 10%;"></div>
                 <div class="filter-point-marker" data-point="membrane" style="top: 50%; left: 35%;"></div>
                 <div class="filter-point-marker" data-point="sensor" style="top: 50%; left: 60%;"></div>
                 <div class="filter-point-marker" data-point="outlet" style="top: 50%; left: 85%;"></div>
               </div>
-              
+
               <div class="filter-points-row">
                 <div class="filter-point-item" data-id="inlet">
                   <div class="filter-point-dot"></div>
@@ -881,13 +857,17 @@
                   <span>Controlled Outlet</span>
                 </div>
               </div>
-              
+
               <div class="filter-diagram-footer">
-                <h3>Specialized Filter Configuration</h3>
+                <h3>CFD 3 Configuration</h3>
                 <div class="filter-model-number">Model: F-3000</div>
               </div>
             </div>
-            
+
+            <div class="filter-cta-container">
+              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/filter-sets" class="filter-primary-btn">Request CFD 3 Quote</a>
+            </div>
+
             <!-- Specs Grid for Specialized Filter -->
             <div class="filter-specs-grid">
               <div class="filter-specs-item">
@@ -935,16 +915,63 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="filter-cta-container">
-              <a href="https://custom-sut-catalog.foxxbioprocess.com/v1/portal/csutc/dashboard/tubing-sets" class="filter-primary-btn">Request Specialized Quote</a>
+              <a href="#" class="filter-primary-btn">Learn More About CFD 3</a>
             </div>
           </div>
-          
+
           <!-- Features Section -->
           <h3 class="filter-section-title" style="font-size: 2rem; margin-top: 50px;">Key Features</h3>
-          
+
           <div class="filter-features-grid">
+            <div class="filter-features-item">
+              <div class="filter-feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM11 7h2v8h-2V7zm0 10h2v2h-2v-2z"/>
+                </svg>
+              </div>
+              <div class="filter-feature-content">
+                <h5>Diagram Library</h5>
+                <p>Access all tubing set diagrams and configurations</p>
+              </div>
+            </div>
+
+            <div class="filter-features-item">
+              <div class="filter-feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
+                </svg>
+              </div>
+              <div class="filter-feature-content">
+                <h5>Technical Documentation</h5>
+                <p>Complete specifications and material compatibility</p>
+              </div>
+            </div>
+
+            <div class="filter-features-item">
+              <div class="filter-feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"/>
+                </svg>
+              </div>
+              <div class="filter-feature-content">
+                <h5>Inquiry Support</h5>
+                <p>Direct technical assistance for your specific needs</p>
+              </div>
+            </div>
+
+            <div class="filter-features-item">
+              <div class="filter-feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                </svg>
+              </div>
+              <div class="filter-feature-content">
+                <h5>Bulk Inquiry Support</h5>
+                <p>Large-scale project assistance and customization</p>
+              </div>
+            </div>
             <div class="filter-features-item">
               <div class="filter-feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -970,12 +997,12 @@
             <div class="filter-features-item">
               <div class="filter-feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M4 12c0-4.411 3.589-8 8-8 3.35 0 6.219 2.055 7.412 5H16a1 1 0 000 2h5a1 1 0 001-1V5a1 1 0 00-2 0v2.027C18.268 4.022 15.33 2 12 2 6.486 2 2 6.486 2 12s4.486 10 10 10c4.08 0 7.554-2.447 9.102-5.957a1 1 0 10-1.857-.743C17.967 18.001 15.172 20 12 20c-4.411 0-8-3.589-8-8z" />
+                  <path d="M21 14.5v-2.25a1.5 1.5 0 00-1.5-1.5h-1.5v-3h1.5A1.5 1.5 0 0021 6.25V4a2 2 0 00-2-2H5a2 2 0 00-2 2v2.25a1.5 1.5 0 001.5 1.5H6v3H4.5A1.5 1.5 0 003 12.25v2.25a2 2 0 002 2h1.5v3H5A1.5 1.5 0 003 21.75V24h18v-2.25a1.5 1.5 0 00-1.5-1.5h-1.5v-3H19a2 2 0 002-2z" />
                 </svg>
               </div>
               <div class="filter-feature-content">
-                <h5>Easy Replacement</h5>
-                <p>Quick-change design for minimal downtime during filter replacement</p>
+                <h5>Custom Integration</h5>
+                <p>Tailored solutions for seamless integration with existing systems</p>
               </div>
             </div>
             <div class="filter-features-item">
@@ -990,11 +1017,11 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Metrics Display Section -->
           <div class="sut-metrics-display">
             <h3 class="filter-section-title" style="font-size: 2rem; margin-top: 50px;">Filter Set Metrics</h3>
-            
+
             <div class="sut-metric-block">
               <div class="sut-metric-header-row">
                 <h4>Available Diagrams</h4>
@@ -1013,7 +1040,7 @@
                 <span class="sut-metric-label">Target: Expanding</span>
               </div>
             </div>
-            
+
             <div class="sut-metric-block sut-right-aligned">
               <div class="sut-metric-header-row">
                 <h4>Documentation Completeness</h4>
@@ -1027,7 +1054,7 @@
                 <span class="sut-metric-label">Comprehensive</span>
               </div>
             </div>
-            
+
             <div class="sut-metric-block">
               <div class="sut-metric-header-row">
                 <h4>Design Variations</h4>
@@ -1041,56 +1068,8 @@
                 <span class="sut-metric-label">Custom</span>
               </div>
             </div>
+
             
-            <div class="filter-features-grid" style="margin-top: 40px;">
-              <div class="filter-features-item">
-                <div class="filter-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM11 7h2v8h-2V7zm0 10h2v2h-2v-2z"/>
-                  </svg>
-                </div>
-                <div class="filter-feature-content">
-                  <h5>Diagram Library</h5>
-                  <p>Access all tubing set diagrams and configurations</p>
-                </div>
-              </div>
-              
-              <div class="filter-features-item">
-                <div class="filter-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
-                  </svg>
-                </div>
-                <div class="filter-feature-content">
-                  <h5>Technical Documentation</h5>
-                  <p>Complete specifications and material compatibility</p>
-                </div>
-              </div>
-              
-              <div class="filter-features-item">
-                <div class="filter-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"/>
-                  </svg>
-                </div>
-                <div class="filter-feature-content">
-                  <h5>Inquiry Support</h5>
-                  <p>Direct technical assistance for your specific needs</p>
-                </div>
-              </div>
-              
-              <div class="filter-features-item">
-                <div class="filter-feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                  </svg>
-                </div>
-                <div class="filter-feature-content">
-                  <h5>Bulk Inquiry Support</h5>
-                  <p>Large-scale project assistance and customization</p>
-                </div>
-              </div>
-            </div>
           </div>
 
           <!-- Final CTA -->
@@ -1110,25 +1089,25 @@
       // Tab switching functionality
       const tabButtons = document.querySelectorAll('.filter-config-tabs > div');
       const tabContents = document.querySelectorAll('.filter-tab-content');
-      
+
       tabButtons.forEach(button => {
         button.addEventListener('click', function() {
           // Remove active class from all buttons and contents
           tabButtons.forEach(btn => btn.classList.remove('filter-tab-active'));
           tabContents.forEach(content => content.classList.remove('active'));
-          
+
           // Add active class to clicked button
           this.classList.add('filter-tab-active');
-          
+
           // Show corresponding tab content
           const tabId = this.getAttribute('data-tab');
           document.getElementById(`${tabId}-tab`).classList.add('active');
         });
       });
-      
+
       // Point marker and label interaction
       setupPointInteractions();
-      
+
       // Animation on scroll
       setTimeout(() => {
         document.querySelector('.filter-animate-on-scroll').classList.add('animate-active');
@@ -1139,26 +1118,26 @@
       // Point markers hovering effect
       const pointMarkers = document.querySelectorAll('.filter-point-marker');
       const pointItems = document.querySelectorAll('.filter-point-item');
-      
+
       // When hovering over markers
       pointMarkers.forEach(marker => {
         marker.addEventListener('mouseenter', function() {
           const pointId = this.getAttribute('data-point');
           highlightPoint(pointId);
         });
-        
+
         marker.addEventListener('mouseleave', function() {
           resetHighlights();
         });
       });
-      
+
       // When hovering over labels
       pointItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
           const pointId = this.getAttribute('data-id');
           highlightPoint(pointId);
         });
-        
+
         item.addEventListener('mouseleave', function() {
           resetHighlights();
         });
@@ -1173,14 +1152,14 @@
         marker.style.boxShadow = '0 0 15px rgba(9, 94, 167, 0.7)';
         marker.style.animationPlayState = 'paused';
       }
-      
+
       // Highlight the point label
       const item = document.querySelector(`.filter-point-item[data-id="${pointId}"]`);
       if (item) {
         item.style.color = '#095ea7';
         item.style.fontWeight = 'bold';
         item.style.transform = 'translateY(-5px)';
-      }
+            }
     }
 
     function resetHighlights() {
@@ -1190,7 +1169,7 @@
         marker.style.boxShadow = '';
         marker.style.animationPlayState = 'running';
       });
-      
+
       // Reset all point labels
       document.querySelectorAll('.filter-point-item').forEach(item => {
         item.style.color = '';
