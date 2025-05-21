@@ -1,0 +1,733 @@
+
+{% schema %}
+    {
+    "name": "Interactive Hotspots",
+    "class": "interactive-hotspots",
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "main_image",
+    "label": "Main Image"
+    },
+    {
+    "type": "color",
+    "id": "highlight_color",
+    "label": "Highlight Color",
+    "default": "#007bff"
+    },
+    {
+ "type": "range",
+ "id": "image_width",
+ "label": "Image Width",
+ "min": 20,
+ "max": 1000,
+ "step": 10,
+ "unit": "px",
+ "default": 80
+},
+{
+ "type": "range",
+ "id": "image_height",
+ "label": "Image Height",
+ "min": 20,
+ "max": 1000,
+ "step": 10,
+ "unit": "px",
+ "default": 60
+},
+
+
+    {
+    "type": "radio",
+    "id": "enable_animation",
+    "label": "Enable Animation",
+    "options": [
+    {
+    "value": "true",
+    "label": "Yes"
+    },
+    {
+    "value": "false",
+    "label": "No"
+    }
+    ],
+    "default": "true"
+    }
+    ],
+    "blocks": [
+    {
+    "type": "hotspot",
+    "name": "Hotspot",
+    "settings": [
+    {
+    "type": "text",
+    "id": "heading",
+    "label": "Heading",
+    "default": "Feature"
+    },
+    {
+    "type": "richtext",
+    "id": "text",
+    "label": "Text",
+    "default": "<p>Description text</p>"
+    },
+    {
+    "type": "range",
+    "id": "position_x",
+    "min": 0,
+    "max": 500,
+    "step": 5,
+    "unit": "%",
+    "label": "Marker X Position",
+    "default": 50
+    },
+    {
+    "type": "range",
+    "id": "position_y",
+    "min": 0,
+    "max": 500,
+    "step": 5,
+    "unit": "%",
+    "label": "Marker Y Position",
+    "default": 50
+    },
+    {
+    "type": "range",
+    "id": "card_position_x",
+    "min": 0,
+    "max": 500,
+    "step": 5,
+    "unit": "%",
+    "label": "Card X Position",
+    "default": 30
+    },
+    {
+    "type": "range",
+    "id": "card_position_y",
+    "min": 0,
+    "max": 500,
+    "step": 5,
+    "unit": "%",
+    "label": "Card Y Position",
+    "default": 30
+    },
+    {
+ "type": "range",
+ "id": "connector_x",
+ "min": -500,
+ "max": 500,
+ "step": 10,
+ "unit": "%",
+ "label": "Connector X Position",
+ "default": -50,
+ "info": "Horizontal position relative to card"
+ }, {
+ "type": "range",
+ "id": "connector_y",
+ "min": -500,
+ "max": 500,
+ "step": 10,
+ "unit": "%",
+ "label": "Connector Y Position",
+ "default": 50,
+ "info": "Vertical position relative to card"
+ },
+
+    {
+    "type": "range",
+    "id": "connector_size",
+    "min": 5,
+    "max": 50,
+    "step": 1,
+    "unit": "px",
+    "label": "Connector Size",
+    "default": 12
+    },
+    {
+    "type": "select",
+    "id": "border_position",
+    "label": "Border Position",
+    "options": [
+    { "value": "left", "label": "Left" },
+    { "value": "right", "label": "Right" },
+    { "value": "top", "label": "Top" },
+    { "value": "bottom", "label": "Bottom" }
+    ],
+    "default": "left"
+    },
+    {
+    "type": "range",
+    "id": "border_width",
+    "label": "Border Width",
+    "min": 1,
+    "max": 10,
+    "step": 1,
+    "unit": "px",
+    "default": 2
+    }
+    ]
+    }
+    ],
+    "presets": [
+    {
+    "name": "Interactive Hotspots",
+    "category": "Custom"
+    }
+    ]
+    }
+    {% endschema %}
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="YOUR_INTEGRITY_HASH" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <div class="interactive-hotspots-wrapper" data-section-id="{{ section.id }}">
+    <div class="hotspot-editor">
+    <div class="image-container"  style="width: {{ section.settings.image_width }}px;
+        height: {{ section.settings.image_height }}px;" >
+    {% if section.settings.main_image != blank %}
+        <img src="{{ section.settings.main_image | img_url: '1200x' }}"
+        class="base-image"
+        alt="{{ section.settings.main_image.alt }}"
+        style="width: 100%;
+        height: 100%;
+        object-fit: contain;">
+    {% endif %}
+
+    <div class="hotspot-marker-container">
+    {% for block in section.blocks %}
+    <div class="hotspot-marker"
+    style="left: {{ block.settings.position_x }}%;
+    top: {{ block.settings.position_y }}%;"
+    data-block-id="{{ block.id }}">
+    <div class="marker-dot" style="background-color: {{ section.settings.highlight_color }}"></div>
+    </div>
+    {% endfor %}
+    </div>
+    </div>
+
+
+    <div class="hotspot-content-container">
+    {% for block in section.blocks %}
+    <div class="hotspot-card hotspot-card-{{ block.id }}"
+    data-block-id="{{ block.id }}"
+    data-border-position="{{ block.settings.border_position }}"
+    style="left: {{ block.settings.card_position_x }}%;
+    top: {{ block.settings.card_position_y }}%;
+    border-{{ block.settings.border_position }}: {{ block.settings.border_width }}px solid {{ section.settings.highlight_color }};">
+    <div class="card-content">
+    <h3 class="card-heading">{{ block.settings.heading }}</h3>
+    <div class="card-text">{{ block.settings.text }}</div>
+    </div>
+    <div class="hotspot-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+    <div class="connector-dot"
+    style="position: absolute;
+    left: {{ block.settings.connector_x }}%;
+    top: {{ block.settings.connector_y }}%;
+    width: {{ block.settings.connector_size }}px;
+    height: {{ block.settings.connector_size }}px;
+    background-color: {{ section.settings.highlight_color }};
+    transform: translate(-50%, -50%);">
+    </div>
+    <div class="connector-line" style="position: absolute; background-color: {{ section.settings.highlight_color }};"></div>
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+    </div>
+    </div>
+
+
+    <style>
+
+        .connector-dot {
+            background-color: rgba(0, 123, 255, 0.5)!important;
+            display:none!important
+        }
+
+        .connector-line {
+
+        }
+
+        .interactive-hotspots-wrapper {
+        position: relative;
+        margin: 2rem auto;
+        padding: 20px;
+        max-width: 100%;
+        width: 1400px;
+        }
+
+
+        .hotspot-editor {
+        position: relative;
+        width: 100%;
+        }
+
+
+        .image-container {
+        position: relative;
+        /* cursor: crosshair; */
+        border-radius: 8px;
+        overflow: hidden;
+        text-align: center;
+        margin: 0 auto; /* Center the container */
+        }
+
+
+        .image-container .base-image {
+        display: block;
+        margin: 0 auto;
+        }
+
+
+        .hotspot-content-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        }
+
+
+        .hotspot-card {
+        position: absolute;
+        background: rgba(230, 242, 255, 0.5); /* Light gray with some transparency */
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px solid #007bff;
+        min-width: 150px;
+        z-index: 10;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+        pointer-events: auto;
+        }
+
+
+        .hotspot-card h3.card-heading {
+        font-size: 1.2em; /* Adjust as needed */
+        font-weight: bold;
+        margin-bottom: 0.5em;
+        color: #333; /* Adjust as needed */
+        }
+
+
+        .hotspot-card .card-text {
+        font-size: 1em; /* Adjust as needed */
+        color: #555; /* Adjust as needed */
+        }
+
+
+        .hotspot-card .card-text ul, .hotspot-card .card-text ol {
+        list-style-type: none; /* Remove default list styling */
+        padding: 0; /* Remove padding */
+        margin: 0; /* Remove margin */
+        overflow: hidden; /* Clip the content initially */
+        }
+
+
+        .hotspot-card .card-text ul li {
+        font-size: 16px; /* Adjust font size as needed */
+        padding-left: 0.5em; /* Add padding to the left of the text */
+        margin-bottom: 0.2em; /* Add some margin below each list item */
+        opacity: 0; /* Initially hide the list items */
+        transform: translateX(-20px); /* Move them to the left slightly */
+        animation: fadeInListItem 0.5s forwards ease-out; /* Apply the animation */
+        position: relative; /* Ensure correct positioning */
+        }
+
+
+        .hotspot-card .card-text ul li::before {
+        content: "";
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        margin-left: -0.7em;
+        margin-right: 0.3em;
+        vertical-align: middle;
+        position: relative;
+        top: -2px;
+        background-color: #007bff;
+        -webkit-clip-path: polygon(50% 0%, 65% 28%, 94% 35%, 73% 59%, 80% 90%, 50% 75%, 20% 90%, 27% 59%, 6% 35%, 35% 28%);
+        clip-path: polygon(50% 0%, 65% 28%, 94% 35%, 73% 59%, 80% 90%, 50% 75%, 20% 90%, 27% 59%, 6% 35%, 35% 28%);
+        transform: rotate(90deg) scale(0.8);
+        }
+
+
+        /* Define the animation */
+        @keyframes fadeInListItem {
+        from {
+        opacity: 0;
+        transform: translateX(-20px);
+        }
+        to {
+        opacity: 1;
+        transform: translateX(0);
+        }
+        }
+
+
+        /* Apply a staggered delay to each list item */
+        .hotspot-card .card-text ul li:nth-child(1) {
+        animation-delay: 0.2s;
+        }
+
+
+        .hotspot-card .card-text ul li:nth-child(2) {
+        animation-delay: 0.4s;
+        }
+
+
+        .hotspot-card .card-text ul li:nth-child(3) {
+        animation-delay: 0.6s;
+        }
+
+
+        /* Add more nth-child selectors as needed for longer lists */
+
+
+        .hotspot-card h3 {
+        padding: 0px;
+        margin: 0px;
+        }
+
+
+        .hotspot-card.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        }
+
+
+        .hotspot-marker {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+        z-index: 100;
+        }
+
+
+        .marker-dot {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+        transition: transform 0.3s ease;
+        }
+
+
+        @keyframes pulse {
+        0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+        }
+
+
+        50% {
+        transform: scale(1.1);
+        opacity: 1;
+        }
+
+
+        100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+        }
+        }
+
+
+        .connector-line {
+        position: absolute;
+        height: 2px;
+        background-color: {{ section.settings.highlight_color }};
+        transform-origin: left center;
+        z-index: 250;
+        pointer-events: none;
+        }
+
+
+        .connector-dot {
+        position: absolute;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 300;
+        transition: all 0.3s ease;
+        }
+
+
+        .connector-line:empty,
+        .connector-dot:empty {
+        display: block
+        }
+
+        /* .index-backdrop {
+ position: absolute;
+ top: 10px;
+ right: 10px;
+ font-size: 100px;
+    color: rgba(51, 127, 211, 0.3);
+    font-weight: bold;
+    z-index: 1;
+ } */
+
+ .index-backdrop {
+ position: absolute;
+ top: 50px;
+ right: 10px;
+ color: rgba(51, 127, 211, 0.1);
+ font-size: 100px;
+ z-index: -1; /* Place behind the card content */
+ transform: translateX(10px); /* Slight horizontal offset */
+ animation: fadeInOut 3s infinite alternate; /* Apply fade-in-out animation */
+}
+
+
+@keyframes fadeInOut {
+ 0% { opacity: 0; }
+ 100% { opacity: 1; }
+}
+
+
+       </style>       
+
+   <style>
+    /* Responsive Styles */
+    @media (max-width: 1024px) {
+      .filter-specs-grid,
+      .filter-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .filter-diagram-footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .filter-diagram-footer h3 {
+        margin-bottom: 5px;
+      }
+
+      .hotspot-card {
+        position: static;
+        margin: 10px auto;
+        width: 90%;
+        max-width: 300px;
+      }
+
+      .connector-line,
+      .connector-dot {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .filter-specs-grid,
+      .filter-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .image-container {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      .hotspot-card {
+        position: relative !important;
+        width: 90% !important;
+        max-width: 280px;
+        margin: 10px auto !important;
+        left: 0 !important;
+        top: 0 !important;
+        transform: none !important;
+      }
+
+      .marker-dot {
+        width: 16px !important;
+        height: 16px !important;
+      }
+
+      .connector-line {
+        height: 1px !important;
+      }
+
+      .connector-dot {
+        width: 8px !important;
+        height: 8px !important;
+      }
+      .filter-section-title {
+        font-size: 2.2rem;
+      }
+
+      .filter-config-tabs {
+        flex-direction: column;
+      }
+
+      .filter-specs-grid,
+      .filter-features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-point-item span {
+        font-size: 0.9rem;
+      }
+
+      .hotspot-marker {
+        transform: scale(0.8);
+      }
+
+      .hotspot-content-container {
+        position: relative;
+        margin-top: 20px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .filter-points-row {
+        flex-wrap: wrap;
+      }
+
+      .image-container {
+        margin-bottom: 30px;
+      }
+    }
+</style>
+
+
+
+
+               <script>
+
+document.addEventListener('DOMContentLoaded', function () {
+  const cards = document.querySelectorAll('.hotspot-card');
+  if (cards.length === 0) return;
+
+  let currentIndex = 0;
+  const delay = 2000;
+  const fadeDuration = 500;
+  const resetDelay = 3000; // Adjusted to 3 sec for demo
+  const loopDelay = 120000; // 2 minutes in milliseconds
+
+  // Function to update connectors and index backdrop only for visible cards
+  const updateConnectors = () => {
+    cards.forEach((card, index) => {
+      const visible = card.style.visibility === 'visible';
+      const line = card.querySelector('.connector-line');
+      const dot = card.querySelector('.connector-dot');
+      const borderPos = card.dataset.borderPosition;
+
+      // Remove existing index backdrop (if any)
+      let indexBackdrop = card.querySelector('.index-backdrop');
+      if (!indexBackdrop && visible) {
+        indexBackdrop = document.createElement('div');
+        indexBackdrop.classList.add('index-backdrop');
+        card.appendChild(indexBackdrop);
+      }
+
+      if (indexBackdrop && visible) {
+        indexBackdrop.textContent = index + 1;
+
+        const cardRect = card.getBoundingClientRect();
+
+        let dotX = parseFloat(dot.style.left);
+        let dotY = parseFloat(dot.style.top);
+
+        dotX = isNaN(dotX) ? 0 : dotX;
+        dotY = isNaN(dotY) ? 0 : dotY;
+
+        const startX = cardRect.width * (dotX / 100);
+        const startY = cardRect.height * (dotY / 100);
+
+        const borderPoint = getBorderPoint(cardRect, borderPos);
+
+        const deltaX = startX - borderPoint.x;
+        const deltaY = startY - borderPoint.y;
+        const length = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+        const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+
+        line.style.cssText = `
+          position: absolute;
+          width: ${length}px;
+          height: 2px;
+          background-color: ${window.getComputedStyle(dot).backgroundColor};
+          transform: rotate(${angle}deg);
+          transform-origin: left center;
+          left: ${borderPoint.x}px;
+          top: ${borderPoint.y}px;
+          display: block;
+        `;
+        dot.style.display = 'block';
+      } else {
+        if (indexBackdrop) indexBackdrop.remove();
+        if (line) line.style.display = 'none';
+        if (dot) dot.style.display = 'none';
+      }
+    });
+  };
+
+  const getBorderPoint = (rect, borderPos) => {
+    let x, y;
+    switch (borderPos) {
+      case 'left': x = 0; y = rect.height / 2; break;
+      case 'right': x = rect.width; y = rect.height / 2; break;
+      case 'top': x = rect.width / 2; y = 0; break;
+      case 'bottom': x = rect.width / 2; y = rect.height; break;
+      default: x = 0; y = 0;
+    }
+    return { x, y };
+  };
+
+  // Show the next card and update visibility accordingly
+  const showNextCard = () => {
+    // Hide all cards initially
+    cards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.visibility = 'hidden';
+      card.classList.remove('active');
+    });
+
+    // Show current card
+    const currentCard = cards[currentIndex];
+    currentCard.style.opacity = '1';
+    currentCard.style.visibility = 'visible';
+    currentCard.classList.add('active');
+
+    // Update connectors for the visible card
+    updateConnectors();
+
+    currentIndex++;
+    if (currentIndex >= cards.length) {
+      // After showing last card, show all cards for resetDelay
+      setTimeout(() => {
+        cards.forEach(card => {
+          card.style.opacity = '1';
+          card.style.visibility = 'visible';
+          card.classList.add('active');
+        });
+        updateConnectors();
+
+        // Then hide all and restart cycle after loopDelay (2 minutes)
+        setTimeout(() => {
+          cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.visibility = 'hidden';
+            card.classList.remove('active');
+          });
+          currentIndex = 0;
+          showNextCard();
+        }, loopDelay); // Use loopDelay here
+      }, delay);
+    } else {
+      setTimeout(showNextCard, delay);
+    }
+  };
+
+
+  // Start animation loop
+  showNextCard();
+});
+               </script>

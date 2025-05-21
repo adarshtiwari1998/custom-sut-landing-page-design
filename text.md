@@ -28,4 +28,36 @@ I need cfd 1 cfd 2 content text over tab
 
 
 6. last  cta section
-a
+
+
+
+
+
+
+I created a new file
+
+image-hotspot.liquid
+
+there is blunder in the mobile layotu right now the hotspot cards and the line are overlay and blunder in the mobile device how we showcase this over image in mobile how we fixed this issue
+
+it is showing perfectly in big descktop but the blunder in the mobile and small device
+
+`
+
+right now in mobile device it is showig like this
+
+see imaeg 1
+
+but in desktop i tis perfectly showing
+
+see imaeg 2
+
+`
+
+how we fixed the layotu in mobile device only
+
+
+I want to show the hotspot line and dot on mobile it is possible in mobile dont show all cards together means only 1 cards at the time and it looping only for mobile and ake sure image container also response in mobile
+
+and it is adjust and my hotspot line and dot adjusted in mobile and it is also small in mobile device
+`
